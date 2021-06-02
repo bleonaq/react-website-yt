@@ -1,5 +1,4 @@
 import React from 'react'
-// import './login.css';
 import {TextField} from '@material-ui/core';
 import {Link} from 'react-router-dom';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
@@ -7,13 +6,17 @@ import Checkbox from '@material-ui/core/Checkbox';
 import CheckBoxOutlineBlankIcon from '@material-ui/icons/CheckBoxOutlineBlank';
 import CheckBoxIcon from '@material-ui/icons/CheckBox';
 import PersonAddIcon from '@material-ui/icons/PersonAdd';
+import '../../SignUp.css';
 import { Button } from 'react-bootstrap'
 import { Divider } from '@material-ui/core';
-const Singup=()=> {
+const SignUp=()=> {
     return(
+        <div className="app1">
         <div>
             <div className="icon">
-                <div className="icon_class"></div>
+                <div className="icon_class">
+                <PersonAddIcon fontSize="large"/>
+                </div>
                 <div className="text">Sign Up</div>
             </div>
 
@@ -43,7 +46,7 @@ const Singup=()=> {
               </div>
               <Divider variant="middle"/>
               <p className="text-center">
-                  <Link to="\login" className="text-black-50">
+                  <Link to="login" className="text-black-50">
                     <h5>Already have an Account?</h5> 
                   </Link>
               </p>
@@ -51,7 +54,8 @@ const Singup=()=> {
               
 
         </div>
+        </div>
     )
 
 }
-export default Singup
+export default SignUp;

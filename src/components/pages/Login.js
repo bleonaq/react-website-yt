@@ -14,16 +14,16 @@ import { Divider } from '@material-ui/core';
 const Login=()=> {
     return(
         <div className="app">
-        <div> 
+        <div>
             <div className="icon">
                 <div className="icon_class">
                     <PersonAddIcon fontSize="large"/>
                 </div>
-                <div className="text">Log in</div>
+                <div className="text">Log in</div> 
             </div>
 
 
-              <div className="row m-2">
+            <div className="row m-2">
               <TextField id="email" className="p-2" type="text" variant="outlined" label="Enter Email" fullWidth/>
               <TextField id="Pasword" className="p-2" type="text" variant="outlined" label="Enter Password" fullWidth style={{marginTop:"10px"}}/>
               <FormControlLabel
@@ -40,7 +40,7 @@ const Login=()=> {
               </div>
               <Divider variant="middle"/>
               <p className="text-center">
-                  <Link to="signin" className="text-black-50">
+                  <Link to="SignUp" className="text-black-50">
                       <h5>Create Account</h5>
                   </Link>
               </p>

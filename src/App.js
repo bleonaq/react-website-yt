@@ -8,7 +8,7 @@ import Students from './components/pages/Students';
 import List from './components/pages/List';
 import Department from './components/pages/Department';
 // import Signup from './components/pages/SignUp';
-import Singup from './components/pages/Signin';
+import SignUp from './components/pages/SignUp';
 import Login from './components/pages/Login';
 import Container from 'react-bootstrap/Container'
 
@@ -17,12 +17,11 @@ function App() {
   return (
  <>
    <Container maxWidth="sm">
-   <div className="app">
      <Switch>
       {/* < Route path="\signup" exact component={Singup}/> */}
       < Route path="\login" exact component={Login}/>
+      <Route path="\SignUp" exact component={SignUp}/> 
      </Switch>
-   </div>
    </Container>
    <Router>
      <Navbar />
@@ -33,6 +32,7 @@ function App() {
        <Route path='/List' component={List} />
        <Route path='/Department' component={Department} />
        {/* <Route path='/SignUp' component={Signup} /> */}
+       <Route path='/SignUp' component={SignUp} />
        <Route path="/login" component={Login}></Route>
      </Switch>
    </Router>
