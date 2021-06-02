@@ -16,7 +16,7 @@ import Container from 'react-bootstrap/Container'
 function App() {
   return (
  <>
-   <Container maxWidth="md">
+   <Container maxWidth="sm">
    <div className="app">
      <Switch>
       {/* < Route path="\signup" exact component={Singup}/> */}

@@ -1,6 +1,6 @@
 
 import React from 'react'
-import '../../App.css';
+import '../../login.css';
 import {TextField} from '@material-ui/core';
 import {Link} from 'react-router-dom';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
@@ -13,7 +13,8 @@ import { Divider } from '@material-ui/core';
 
 const Login=()=> {
     return(
-        <div>
+        <div className="app">
+        <div> 
             <div className="icon">
                 <div className="icon_class">
                     <PersonAddIcon fontSize="large"/>
@@ -23,8 +24,8 @@ const Login=()=> {
 
 
               <div className="row m-2">
-              <TextField id="email " className="p-2" type="text" variant="outlined" label="Enter Email" fulWidth/>
-              <TextField id="Pasword" className="p-2" type="text" variant="outlined" label="Enter Password" fulWidth/>
+              <TextField id="email" className="p-2" type="text" variant="outlined" label="Enter Email" fullWidth/>
+              <TextField id="Pasword" className="p-2" type="text" variant="outlined" label="Enter Password" fullWidth style={{marginTop:"10px"}}/>
               <FormControlLabel
               control={
                   <Checkbox
@@ -43,6 +44,7 @@ const Login=()=> {
                       <h5>Create Account</h5>
                   </Link>
               </p>
+        </div>
         </div>
     )
 

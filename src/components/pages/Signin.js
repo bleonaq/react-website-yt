@@ -1,5 +1,5 @@
 import React from 'react'
-import '../../App.css';
+// import './login.css';
 import {TextField} from '@material-ui/core';
 import {Link} from 'react-router-dom';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
@@ -19,16 +19,16 @@ const Singup=()=> {
 
             <div class Name="row m-2">
                 <div className="col-6  p-2 ">
-                <TextField id="firstname" type="text" variant="outlined" label="Enter First Name" fulWidth/>
+                <TextField id="firstname" type="text" variant="outlined" label="Enter First Name" fullWidth/>
                 </div>
                 <div className="col-6  p-2">
-                <TextField id="firstname" type="text" variant="outlined" label="Enter Last Name" fulWidth/>   
+                <TextField id="firstname" type="text" variant="outlined" label="Enter Last Name" fullWidth/>   
                 </div>
               </div>  
 
               <div className="row m-2">
-              <TextField id="email" className="p-2" type="text" variant="outlined" label="Enter Email" fulWidth/>
-              <TextField id="Pasword" className="p-2" type="text" variant="outlined" label="Enter Password" fulWidth/>
+              <TextField id="email" className="p-2" type="text" variant="outlined" label="Enter Email" fullWidth/>
+              <TextField id="Pasword" className="p-2" type="text" variant="outlined" label="Enter Password" fullWidth/>
               <FormControlLabel
               control={
                   <Checkbox

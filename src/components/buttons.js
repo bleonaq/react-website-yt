@@ -9,7 +9,7 @@ const SIZES=['btn--medium','btn--large'];
 
 export const Button =({children , type , onClick , buttonStyle ,
 buttonSize}) =>{
-    const history = useHistory();
+   const history = useHistory();
     const handleClick = () => history.push('/some-route');
     const checkButtonStyle=STYLES.includes(buttonStyle) ? buttonStyle : STYLES[0];
     const checkButtonSize=SIZES.includes(buttonSize) ? buttonSize :SIZES[0];
@@ -20,6 +20,7 @@ return (
         <button
         className={'btn ${checkButtonStyle} ${checkButtonSize}'}
         onClick={handleClick}
+        onClick={onClick}
         type={type}
         >
          {children}   
