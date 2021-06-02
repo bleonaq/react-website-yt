@@ -6,8 +6,6 @@ import './HeroSection.css';
 function HeroSection(){
     return (
         <div className='hero-container'>
-            <img src="../public/images/photo.png"/>
-        
             <h1>"An investment in knowledge always pays the best interest." </h1>
             <p>What are you waiting for ?</p>
 
