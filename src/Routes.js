@@ -17,6 +17,7 @@ import HomeProvider from './providers/HomeProvider';
 import Subject from './components/pages/SubjectCrud/Subject'
 import Professor from './components/pages/ProfessorCrud/Professor';
 import Birthplace from './components/pages/BirthplaceCrud/Birthplace';
+import Student from "./components/pages/StudentCrud/Student";
 import api from './AxiosCall';
 import { createHashHistory } from 'history'
 
@@ -79,6 +80,7 @@ export default function Routes() {
                             <Route path="/City" component={City} />
                             <Route path='/Birthplace' component={Birthplace}/>
                             <Route path='/Main'component={Main}/>
+                            <Route path='/Student' component={Student}/>
                             <Route path='/Professor' component={Professor} />
                             <Route path='/SignUp' component={SignUp} />
                             <Route path="/login" component={Login}></Route>
