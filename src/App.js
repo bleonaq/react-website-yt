@@ -11,16 +11,9 @@ function App() {
   // const { user, dispatch } = useContext(useAppContext);
   return (
     <AppProvider>
-      <div id="wrapper">
-        <Navbar />
-        <div id="content-wrapper" className="d-flex flex-column">
-          <div id="content">
-            <TopNav />
+     
             <Routes></Routes>
-          </div>
-        </div>
-      </div>
-
+          
 
     </AppProvider>
   );

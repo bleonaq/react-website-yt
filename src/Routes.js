@@ -23,7 +23,6 @@ import Student from "./components/pages/StudentCrud/Student";
 import api from './AxiosCall';
 import { createHashHistory } from 'history'
 
-
 export default function Routes() {
 
     const { user, dispatch } = useAppContext();
@@ -59,97 +58,71 @@ export default function Routes() {
                 console.log(error);
             });
     };
-
+    //     <Route path="/subject">
+    //     <Subject />
+    // </Route>
+    // <Route path="/Birthplace">
+    //     <Birthplace />
+    // </Route>
+    // <Route path="/Main">
+    //     <Main />
+    // </Route>
+    // <Route path="/SignUp">
+    //     <SignUp />
+    // </Route>
     return (
         <>
-            {/* <Router>
-                <Route path='/SignUp' component={SignUp} />
-                <Switch>
-                <HomeProvider>
-
-                    <PrivateRoute>
-                        <AdminPrivateRoute>
-                                <CrudProvider>
-                                    <Route path='/subject' component={Subject} />
-                                    <Route path="/City" component={City} />
-                                    <Route path='/Birthplace' component={Birthplace} />
-                                    <Route path='/Main' component={Main} />
-                                    <Route path='/Professor' component={Professor} />
-                                    <Route path='/SignUp' component={SignUp} />
-                                    <Route path='/Main' component={Main} />
-                                </CrudProvider>
-                        </AdminPrivateRoute>
-                        <StudentPrivateRoute>
-                            <CrudProvider>
-                                <Route path='/' exact component={Home} />
-                                <Route path='/subject' component={Subject} />
-                                <Route path="/City" component={City} />
-                                <Route path='/Birthplace' component={Birthplace} />
-                                <Route path='/Main' component={Main} />
-                                <Route path='/Professor' component={Professor} />
-                                <Route path='/SignUp' component={SignUp} />
-                            </CrudProvider>
-                        </StudentPrivateRoute>
-                        <ProfessorPrivateRoute>
-                                <CrudProvider>
-                                    <Route path='/' exact component={Home} />
-                                    <Route path='/subject' component={Subject} />
-                                    <Route path="/City" component={City} />
-                                    <Route path='/Birthplace' component={Birthplace} />
-                                    <Route path='/Main' component={Main} />
-                                    <Route path='/Professor' component={Professor} />
-                                    <Route path='/SignUp' component={SignUp} />
-                                </CrudProvider>
-                        </ProfessorPrivateRoute>
-                    </PrivateRoute>
-                    </HomeProvider>
-                </Switch>
-            </Router> */}
 
             <Router>
-                <HomeProvider>
-                    {/* <Container maxWidth="sm">
-                        <Switch>
+                <Switch>
+                    <StudentPrivateRoute path="/City">
+                        <div id="wrapper">
+                            <Navbar />
+                            <div id="content-wrapper" className="d-flex flex-column">
+                                <div id="content">
+                                    <TopNav />
+                                    <HomeProvider>
+                                        <CrudProvider>
+                                            <City />
+                                        </CrudProvider>
+                                    </HomeProvider>
+                                </div>
+                            </div>
+                        </div>
+                    </StudentPrivateRoute>
 
-                            <Route path="\login" exact component={Login} />
-                            <Route path="\SignUp" exact component={SignUp} />
 
-                        </Switch>
-                    </Container> */}
+                    <ProfessorPrivateRoute path="/Professor">
+                        <div id="wrapper">
+                            <Navbar />
+                            <div id="content-wrapper" className="d-flex flex-column">
+                                <div id="content">
+                                    <HomeProvider>
+                                        <CrudProvider>
+                                            <Professor />
+                                        </CrudProvider>
+                                    </HomeProvider>
+                                </div>
+                            </div>
+                        </div>
+                    </ProfessorPrivateRoute>
+                    <ProfessorPrivateRoute path="/Main">
+                        <div id="wrapper">
+                            <Navbar />
+                            <div id="content-wrapper" className="d-flex flex-column">
+                                <div id="content">
+                                    <HomeProvider>
+                                        <CrudProvider>
+                                            <Main />
+                                        </CrudProvider>
+                                    </HomeProvider>
+                                </div>
+                            </div>
+                        </div>
+                    </ProfessorPrivateRoute>
+                </Switch>
+            </Router >
 
-
-                    <Switch>
-                        <CrudProvider>
-                                <Route path='/' >
-                                    <Home />
-                                </Route>
-                                <Route path='/subject' >
-                                    <Subject />
-                                </Route>
-                                <Route path='/City' >
-                                    <City />
-                                </Route>
-                                <Route path='/Birthplace' >
-                                    <Birthplace />
-                                </Route>
-                                <Route path='/Maain' >
-                                    <a />
-                                </Route>
-                                <Route path='/Professor' >
-                                    <Professor />
-                                </Route>
-                                {/* <Route path='/subject' component={Subject} />
-                                <Route path="/City" component={City} />
-                                <Route path='/Birthplace' component={Birthplace} />
-                                <Route path='/Main' component={Main} />
-                                <Route path='/Professor' component={Professor} />
-                                <Route path='/SignUp' component={SignUp} />
-                                <Route path="/login" component={Login}></Route> */}
-                        </CrudProvider>
-
-                    </Switch>
-                </HomeProvider>
-            </Router>
         </>
     );
 }
@@ -157,6 +130,7 @@ export default function Routes() {
 
 function PrivateRoute({ children, ...rest }) {
     const { user } = useAppContext();
+
     return (
         <Route
             {...rest}
@@ -184,28 +158,18 @@ function AdminPrivateRoute({ children, ...rest }) {
                 <Home />
             </Route>
         );
+    } else {
+        return (
+            <Login />
+        );
     }
     return null;
 }
 
-<<<<<<< HEAD
-                    <Navbar />
-                    <Switch>
-                        <CrudProvider>
-                            <Route path='/' exact component={Home} />
-                            <Route path='/subject' component={Subject} />
-                            <Route path="/City" component={City} />
-                            <Route path='/Birthplace' component={Birthplace}/>
-                            <Route path='/Main'component={Main}/>
-                            <Route path='/Student' component={Student}/>
-                            <Route path='/Professor' component={Professor} />
-                            <Route path='/SignUp' component={SignUp} />
-                            <Route path="/login" component={Login}></Route>
-                        </CrudProvider>
-=======
 function StudentPrivateRoute({ children, ...rest }) {
     const { user } = useAppContext();
     let roles = [];
+    console.log(user);
     if (user.token != "") {
         const decoded = jwt_decode(user.token);
         if (Array.isArray(decoded["http://schemas.microsoft.com/ws/2008/06/identity/claims/role"])) {
@@ -214,17 +178,14 @@ function StudentPrivateRoute({ children, ...rest }) {
             roles.push(decoded["http://schemas.microsoft.com/ws/2008/06/identity/claims/role"])
         }
     }
-    console.log(roles);
->>>>>>> d7a3b74412fc7d3ebf5b1299c12cb00b75b70c97
-
-    if (user.token !== "" && (roles.includes('Student'))) {
-        return (
-            <Route children>
-                <Home />
-            </Route>
-        );
-    }
-    return null;
+    return (
+        <Route
+            {...rest}
+            render={() =>
+                user.token !== "" && (roles.includes('Student')) ? children : <Login />
+            }
+        />
+    );
 }
 
 function ProfessorPrivateRoute({ children, ...rest }) {
@@ -238,13 +199,14 @@ function ProfessorPrivateRoute({ children, ...rest }) {
             roles.push(decoded["http://schemas.microsoft.com/ws/2008/06/identity/claims/role"])
         }
     }
-    if (user.token !== "" && (roles.includes('Professor'))) {
-        return (
-            <Route children>
-                <Home />
-            </Route>
-        );
-    }
+    return (
+        <Route
+            {...rest}
+            render={() =>
+                user.token !== "" && (roles.includes('Professor')) ? children : <Login />
+            }
+        />
+    );
     return null;
 }
 
