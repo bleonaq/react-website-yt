@@ -1,6 +1,6 @@
 
 import React from 'react'
-import '../../login.css';
+import './login.css';
 import { useState } from 'react';
 import { TextField } from '@material-ui/core';
 import { Link } from 'react-router-dom';
@@ -11,13 +11,16 @@ import CheckBoxOutlineBlankIcon from '@material-ui/icons/CheckBoxOutlineBlank';
 import PersonAddIcon from '@material-ui/icons/PersonAdd';
 import { Button } from 'react-bootstrap'
 import { Divider } from '@material-ui/core';
-import api from '../../AxiosCall';
+import api from '../../../../AxiosCall';
 import {toast} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useHistory } from "react-router-dom";
+import { useAppContext } from '../../../../providers/AppProvider';
+
 toast.configure();
 
 const Login = () => {
+    const { dispatch } = useAppContext();
     let history = useHistory();
     const email = useInput('');
     const password = useInput('');
@@ -30,9 +33,9 @@ const Login = () => {
         await api.post('/authenticate/login', userData).then(res => {
             email.onClear();
             password.onClear();
-            history.push('/');
+            history.push('/Main');
             toast("You are logged in now " + (res.data.name));
-            
+            dispatch({ type: 'login', payload: res.data });
         }).catch(error => {
             console.log(error);
         });

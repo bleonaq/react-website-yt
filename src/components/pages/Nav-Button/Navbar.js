@@ -10,16 +10,16 @@ function Navbar(){
     const closeMobileMenu = () => setClick(false);
 
     const showButton = () => {
-        if(window.innerWidth <= 960){
-            setButton(false);
+        if(window.innerWidth <= 360){
+           setButton(true);
         }else{
-            setButton(true);
+            setButton(false);
         }
     };
 
-    useEffect(() => {
-        showButton();
-    }, []);
+   useEffect(() => {
+       showButton();
+   }, []);
 
     window.addEventListener('resize', showButton);
 

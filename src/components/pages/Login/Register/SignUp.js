@@ -9,10 +9,10 @@ import Checkbox from '@material-ui/core/Checkbox';
 import CheckBoxOutlineBlankIcon from '@material-ui/icons/CheckBoxOutlineBlank';
 import CheckBoxIcon from '@material-ui/icons/CheckBox';
 import PersonAddIcon from '@material-ui/icons/PersonAdd';
-import '../../SignUp.css';
+import './SignUp.css';
 import { Button } from 'react-bootstrap'
 import { Divider } from '@material-ui/core';
-import api from '../../AxiosCall';
+import api from '../../../../AxiosCall';
 import { useHistory } from "react-router-dom";
 toast.configure();
 
