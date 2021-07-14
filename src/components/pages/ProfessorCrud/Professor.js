@@ -14,6 +14,7 @@ function Professor() {
     const { register, handleSubmit, reset } = useForm();
     const [show, setShow] = useState(false);
     const [professors, setProfessors] = useState([]);
+   // const[cityId,birthplaceId,genderId]=useState([];)
     const { data, dispatchCrud } = useCrudContext();
     useEffect(() => {
         console.log(user);
@@ -38,53 +39,20 @@ function Professor() {
                 <AddProfessor />
             </div>
             <Table responsive>
-                <table class="table table-sm">
-                    <tbody>
+                
+                    
                     <thead>
-                        <tr>
-
-                            <th>Emri i Profesorit</th>
-
-                        </tr>
-                        <tr>
-
-                            <th>Emri i Prindit</th>
-
-                        </tr>
-                        <tr>
-
-                            <th>Mbiemri i Profesorit</th>
-
-                        </tr>
-                        <tr>
-
-                            <th>Numri Personal</th>
-
-                        </tr>
-                        <tr>
-
-                            <th>Data Lindjes</th>
-
-                        </tr>
-                        <tr>
-
-                            <th>Numri telefonit</th>
-
-                        </tr>
-                        <tr>
-
-                            <th>Email</th>
-
-                        </tr>
+                    
+                       
                     </thead>
                     
                         {data.map((d) => {
-                            return <ProfessorItem key={d.professorId} {...d} />
+                            return <ProfessorItem key={d.professorId,d.birthplaceId,d.cityId} {...d} />
                         })}
 
-                    </tbody>
+                
 
-                </table>
+                
             </Table>
         </div>
 

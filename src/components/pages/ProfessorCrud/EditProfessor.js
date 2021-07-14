@@ -5,7 +5,7 @@ import api from "../../../AxiosCall";
 
 import { useForm } from 'react-hook-form';
 
-function EditProfessor({ show, professorId, firstName, lastName, personalNo, birthDate,phoneNumber, email, handleClose }) {
+function EditProfessor({ show, professorId, firstName, lastName, personalNo, birthDate,genderId,birthplaceId,cityId, phoneNumber, email, handleClose }) {
     const { dispatchCrud } = useCrudContext();
     const { register, handleSubmit, formState: { errors } } = useForm(
         {
@@ -15,9 +15,9 @@ function EditProfessor({ show, professorId, firstName, lastName, personalNo, bir
                 lastName: lastName,
                 personalNo: personalNo,
                 birthDate: birthDate,
-               // genderId: genderId,
-               // birthplaceId:birthplaceId,
-                //cityId:cityId,
+                genderId: genderId,
+                birthplaceId: birthplaceId,
+                cityId: cityId,
                 phoneNumber: phoneNumber,
                 email: email
             },
