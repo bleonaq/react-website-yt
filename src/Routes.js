@@ -61,17 +61,97 @@ export default function Routes() {
     return (
         <>
             <Router>
-                <HomeProvider>
-                    {/* <Container maxWidth="sm">
-                        <Switch>
+                <Route path='/SignUp' component={SignUp} />
+                <PrivateRoute>
+                    <AdminPrivateRoute>
+                        <HomeProvider>
+                            <Navbar />
+                            <Switch>
+                                <CrudProvider>
+                                    <Route path='/subject' component={Subject} />
+                                    <Route path="/City" component={City} />
+                                    <Route path='/Birthplace' component={Birthplace} />
+                                    <Route path='/Main' component={Main} />
+                                    <Route path='/Professor' component={Professor} />
+                                    <Route path='/SignUp' component={SignUp} />
+                                    <Route path='/Main' component={Main} />
+                                </CrudProvider>
+                            </Switch>
+                        </HomeProvider>
+                    </AdminPrivateRoute>
+                    <StudentPrivateRoute>
+                        <HomeProvider>
+                            <Navbar />
+                            <Switch>
+                                <CrudProvider>
+                                    <Route path='/' exact component={Home} />
+                                    <Route path='/subject' component={Subject} />
+                                    <Route path="/City" component={City} />
+                                    <Route path='/Birthplace' component={Birthplace} />
+                                    <Route path='/Main' component={Main} />
+                                    <Route path='/Professor' component={Professor} />
+                                    <Route path='/SignUp' component={SignUp} />
+                                </CrudProvider>
+                            </Switch>
+                        </HomeProvider>
+                    </StudentPrivateRoute>
+                    <ProfessorPrivateRoute>
+                        <HomeProvider>
+                            <Navbar />
+                            <Switch>
+                                <CrudProvider>
+                                    <Route path='/' exact component={Home} />
+                                    <Route path='/subject' component={Subject} />
+                                    <Route path="/City" component={City} />
+                                    <Route path='/Birthplace' component={Birthplace} />
+                                    <Route path='/Main' component={Main} />
+                                    <Route path='/Professor' component={Professor} />
+                                    <Route path='/SignUp' component={SignUp} />
+                                </CrudProvider>
+                            </Switch>
+                        </HomeProvider>
+                    </ProfessorPrivateRoute>
+                </PrivateRoute>
+            </Router>
+        </>
+    );
+}
 
-                            <Route path="\login" exact component={Login} />
-                            <Route path="\SignUp" exact component={SignUp} />
 
-                        </Switch>
-                    </Container> */}
+function PrivateRoute({ children, ...rest }) {
+    const { user } = useAppContext();
+    return (
+        <Route
+            {...rest}
+            render={({ location }) =>
+                user.token !== "" ? children : <Login />
+            }
+        />
+    );
+}
 
+function AdminPrivateRoute({ children, ...rest }) {
+    const { user } = useAppContext();
+    let roles = [];
+    if (user.token != "") {
+        const decoded = jwt_decode(user.token);
+        if (Array.isArray(decoded["http://schemas.microsoft.com/ws/2008/06/identity/claims/role"])) {
+            roles = [...decoded["http://schemas.microsoft.com/ws/2008/06/identity/claims/role"]];
+        } else {
+            roles.push(decoded["http://schemas.microsoft.com/ws/2008/06/identity/claims/role"])
+        }
+    }
+    if (user.token !== "" && (roles.includes('Admin'))) {
+        return (
+            <Route children>
+                <Home />
+            </Route>
+        );
+    }
+    return null;
+}
 
+<<<<<<< HEAD
                     <Navbar />
                     <Switch>
                         <CrudProvider>
@@ -85,16 +165,51 @@ export default function Routes() {
                             <Route path='/SignUp' component={SignUp} />
                             <Route path="/login" component={Login}></Route>
                         </CrudProvider>
+=======
+function StudentPrivateRoute({ children, ...rest }) {
+    const { user } = useAppContext();
+    let roles = [];
+    if (user.token != "") {
+        const decoded = jwt_decode(user.token);
+        if (Array.isArray(decoded["http://schemas.microsoft.com/ws/2008/06/identity/claims/role"])) {
+            roles = [...decoded["http://schemas.microsoft.com/ws/2008/06/identity/claims/role"]];
+        } else {
+            roles.push(decoded["http://schemas.microsoft.com/ws/2008/06/identity/claims/role"])
+        }
+    }
+    console.log(roles);
+>>>>>>> d7a3b74412fc7d3ebf5b1299c12cb00b75b70c97
 
-                    </Switch>
-                </HomeProvider>
-            </Router>
-        </>
-    );
+    if (user.token !== "" && (roles.includes('Student'))) {
+        return (
+            <Route children>
+                <Home />
+            </Route>
+        );
+    }
+    return null;
 }
-{/* <Route path="/Main"exact component={() => <Main authorized={true}/>}
-                    
-            /> */}
+
+function ProfessorPrivateRoute({ children, ...rest }) {
+    const { user } = useAppContext();
+    let roles = [];
+    if (user.token != "") {
+        const decoded = jwt_decode(user.token);
+        if (Array.isArray(decoded["http://schemas.microsoft.com/ws/2008/06/identity/claims/role"])) {
+            roles = [...decoded["http://schemas.microsoft.com/ws/2008/06/identity/claims/role"]];
+        } else {
+            roles.push(decoded["http://schemas.microsoft.com/ws/2008/06/identity/claims/role"])
+        }
+    }
+    if (user.token !== "" && (roles.includes('Professor'))) {
+        return (
+            <Route children>
+                <Home />
+            </Route>
+        );
+    }
+    return null;
+}
 
 function getSecondsFromDates(dateTime) {
     const fromDate = new Date(dateTime);

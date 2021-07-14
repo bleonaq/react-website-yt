@@ -1,6 +1,5 @@
 import React from "react";
 import { Redirect } from "react-router";
-import './Main.css';
 //import hello from "../../assets/hello.svg";
 import Chart from "./Chart";
 

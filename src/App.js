@@ -2,7 +2,8 @@ import AppProvider from './providers/AppProvider';
 import Routes from './Routes';
 import { useEffect } from 'react';
 import axios from 'axios';
-import './App.css';
+// import './App.css';
+import "./assets/css/sb-admin-2.min.css";
 
 
 function App() {

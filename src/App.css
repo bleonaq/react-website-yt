@@ -1,14 +1,4 @@
-
- *{
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-    font-family: 'PT Sans', sans-serif;
-  }
-  
-  .home,
-  .Students,
-  .Department,
+  /* .Department,
    .SignUp{
     display: flex;
     height: 90vh;
@@ -26,21 +16,21 @@
     font-size: 100px;
   }
   
-  /*.List {
-   /* background-image: url('/images/img-2.jpg'); 
+  .List {
+    background-image: url('/images/img-2.jpg'); 
     background-position: center;
     background-size: fill;
     background-repeat: no-repeat;
     color: #fff;
     font-size: 100px;
   }
-  */
+  
   
 .SignUp {
-    /* background-image: url('./assets/images/img-2.jpg'); */
+    background-image: url('./assets/images/img-2.jpg');
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
     color: #fff;
     font-size: 100px;
-  } 
+  }  */
