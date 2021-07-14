@@ -4,7 +4,7 @@ import { useForm } from 'react-hook-form';
 import api from "../../../AxiosCall";
 import { useCrudContext } from '../../../providers/CrudProvider';
 
-function AddProfessor() {
+function AddStudent() {
 
     const { register, handleSubmit, reset } = useForm();
     const [show, setShow] = useState(false);
@@ -15,15 +15,14 @@ function AddProfessor() {
     const [cityId, setCityId] = useState(0);
     const [genders, setGenders] = useState([]);
     const [genderId, setGenderId] = useState(0);
-    const[subjects,setSubjects]=useState([]);
-    const[subjectId,setSubjectId]=useState([0])
+    
     useEffect(() => {
         getItems();
     }, []);
 
     const onHandleSubmit = (data) => {
 
-        api.post('/Professor/professorPost', data)
+        api.post('/Student/studentPost', data)
             .then((data) => {
                 setShow(false);
                 dispatchCrud({ type: 'insert', payload: data.data });
@@ -43,20 +42,8 @@ function AddProfessor() {
                 console.log("error", error);
 
             })
-
-            api.post('/Professor/professorSubject',data)
-            .then((data) =>{
-                setShow(false);
-                dispatchCrud({type:'inesrt',payload:data.data});
-                reset({
-                    subjectId:""
-                })
-            }).catch((error) =>{
-                console.log("error",error);
-            })
     }
 
- 
     const getItems = async () => {
         await api
             .get("/administration/getAllBirthPlaces")
@@ -72,24 +59,6 @@ function AddProfessor() {
         const value = e.target.value;
         setBirthplaceId(value);
     };
-    const getIteem = async () => {
-        await api
-            .get("/subject/getAllSubjects")
-            .then((res) => {
-                setSubjects(res.data);
-                setSubjectId(res.data[0].subjectId);
-            })
-            .catch((error) => {
-                console.log(error);
-            });
-    };
-    const onHandleChangeSubject = (e) => {
-        const value = e.target.value;
-        setSubjectId(value);
-    };
-    useEffect(() => {
-        getIteem();
-    }, []);
 
     const getItem = async () => {
         await api
@@ -142,13 +111,13 @@ function AddProfessor() {
                 keyboard={false}
             >
                 <Modal.Header closeButton>
-                    <Modal.Title>Regjistro Profesorin</Modal.Title>
+                    <Modal.Title>Regjistro Student</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
                     <Form onSubmit={handleSubmit(onHandleSubmit)}>
                         <Form.Group>
-                            <Form.Label>Emri i Profesorit</Form.Label>
-                            <Form.Control type="text" placeholder="Emri i Profesorit"
+                            <Form.Label>Emri i Studentit</Form.Label>
+                            <Form.Control type="text" placeholder="Emri i Studentit"
                                 {...register("firstName", { required: true, maxLength: 150 })} />
                         </Form.Group>
                         <Form.Group>
@@ -157,8 +126,8 @@ function AddProfessor() {
                                 {...register("parentName", { required: true, maxLength: 150 })} />
                         </Form.Group>
                         <Form.Group>
-                            <Form.Label>Mbiemri i Profesorit</Form.Label>
-                            <Form.Control type="text" placeholder="Mbiemri"
+                            <Form.Label>Mbiemri i Studentit</Form.Label>
+                            <Form.Control type="text" placeholder="Mbiemri i Studentit"
                                 {...register("lastName", { required: true, maxLength: 150 })} />
                         </Form.Group>
                         <Form.Group>
@@ -172,24 +141,6 @@ function AddProfessor() {
                                 {...register("birthDate", { required: true, maxLength: 150 })} />
                         </Form.Group>
 
-                        <Form.Group>
-                            <Form.Group controllId="exampleForm.ControlSelect1">
-                                <Form.Label>Lenda</Form.Label>
-                                <Form.Control as="select" onChange={onHandleChangeSubject}{...register("subjectId")}>
-                                    {subjects.map((subject) => {
-                                        return (
-                                            <option value={subject.subjectId} key={subject.subjectId}>
-                                                {subject.subjectName}
-                                            </option>
-                                        );
-                                    })}
-                                </Form.Control>
-                            </Form.Group>
-                        </Form.Group>
-                 
-
-
-
                         
                         <Form.Group>
                             <Form.Group controllId="exampleForm.ControlSelect1">
@@ -198,13 +149,19 @@ function AddProfessor() {
                                     {genders.map((gender) => {
                                         return (
                                             <option value={gender.genderId} key={gender.genderId}>
-                                                {gender.genderName}
+                                                {gender.genderId}
                                             </option>
                                         );
                                     })}
                                 </Form.Control>
                             </Form.Group>
                         </Form.Group>
+
+
+
+
+
+
                         <Form.Group>
                             <Form.Group controllId="exampleForm.ControlSelect1">
                                 <Form.Label>Vendi Lindjes</Form.Label>
@@ -270,7 +227,7 @@ function AddProfessor() {
         </>
     )
 }
-export default AddProfessor;
+export default AddStudent;
 
 
 

@@ -19,6 +19,7 @@ import HomeProvider from './providers/HomeProvider';
 import Subject from './components/pages/SubjectCrud/Subject'
 import Professor from './components/pages/ProfessorCrud/Professor';
 import Birthplace from './components/pages/BirthplaceCrud/Birthplace';
+import Student from "./components/pages/StudentCrud/Student";
 import api from './AxiosCall';
 import { createHashHistory } from 'history'
 
@@ -187,6 +188,21 @@ function AdminPrivateRoute({ children, ...rest }) {
     return null;
 }
 
+<<<<<<< HEAD
+                    <Navbar />
+                    <Switch>
+                        <CrudProvider>
+                            <Route path='/' exact component={Home} />
+                            <Route path='/subject' component={Subject} />
+                            <Route path="/City" component={City} />
+                            <Route path='/Birthplace' component={Birthplace}/>
+                            <Route path='/Main'component={Main}/>
+                            <Route path='/Student' component={Student}/>
+                            <Route path='/Professor' component={Professor} />
+                            <Route path='/SignUp' component={SignUp} />
+                            <Route path="/login" component={Login}></Route>
+                        </CrudProvider>
+=======
 function StudentPrivateRoute({ children, ...rest }) {
     const { user } = useAppContext();
     let roles = [];
@@ -199,6 +215,7 @@ function StudentPrivateRoute({ children, ...rest }) {
         }
     }
     console.log(roles);
+>>>>>>> d7a3b74412fc7d3ebf5b1299c12cb00b75b70c97
 
     if (user.token !== "" && (roles.includes('Student'))) {
         return (
