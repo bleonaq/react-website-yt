@@ -9,9 +9,10 @@ import "./assets/css/sb-admin-2.min.css";
 
 ReactDOM.render(
   <React.StrictMode>
-    <BrowserRouter>
-      <App />
-    </BrowserRouter>
+    
+    <App />
+    
+
   </React.StrictMode>,
   document.getElementById("root")
 );

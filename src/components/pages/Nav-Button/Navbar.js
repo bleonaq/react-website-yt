@@ -21,6 +21,8 @@ function Navbar() {
 
     window.addEventListener('resize', showButton);
 
+
+
     return (
         <>
             <ul className="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">

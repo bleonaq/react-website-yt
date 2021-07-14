@@ -3,11 +3,13 @@ import { React, useContext, useEffect } from 'react';
 import jwt_decode from "jwt-decode";
 import './App.css';
 import { Redirect } from 'react-router-dom';
-import Navbar from './components/pages/Nav-Button/Navbar';
+// import Navbar from './components/pages/Nav-Button/Navbar';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Home from './components/pages/Home/Home';
 import City from './components/pages/CityCrud/City';
 import Main from './components/pages/Dashboard/Main';
+import Navbar from './components/pages/Nav-Button/Navbar';
+import TopNav from './components/pages/Nav-Button/TopNav';
 import SignUp from './components/pages/Login/Register/SignUp';
 import Login from './components/pages/Login/Register/Login';
 import Container from 'react-bootstrap/Container'
@@ -59,13 +61,13 @@ export default function Routes() {
 
     return (
         <>
-            <Router>
+            {/* <Router>
                 <Route path='/SignUp' component={SignUp} />
-                <PrivateRoute>
-                    <AdminPrivateRoute>
-                        <HomeProvider>
-                            <Navbar />
-                            <Switch>
+                <Switch>
+                <HomeProvider>
+
+                    <PrivateRoute>
+                        <AdminPrivateRoute>
                                 <CrudProvider>
                                     <Route path='/subject' component={Subject} />
                                     <Route path="/City" component={City} />
@@ -75,29 +77,19 @@ export default function Routes() {
                                     <Route path='/SignUp' component={SignUp} />
                                     <Route path='/Main' component={Main} />
                                 </CrudProvider>
-                            </Switch>
-                        </HomeProvider>
-                    </AdminPrivateRoute>
-                    <StudentPrivateRoute>
-                        <HomeProvider>
-                            <Navbar />
-                            <Switch>
-                                <CrudProvider>
-                                    <Route path='/' exact component={Home} />
-                                    <Route path='/subject' component={Subject} />
-                                    <Route path="/City" component={City} />
-                                    <Route path='/Birthplace' component={Birthplace} />
-                                    <Route path='/Main' component={Main} />
-                                    <Route path='/Professor' component={Professor} />
-                                    <Route path='/SignUp' component={SignUp} />
-                                </CrudProvider>
-                            </Switch>
-                        </HomeProvider>
-                    </StudentPrivateRoute>
-                    <ProfessorPrivateRoute>
-                        <HomeProvider>
-                            <Navbar />
-                            <Switch>
+                        </AdminPrivateRoute>
+                        <StudentPrivateRoute>
+                            <CrudProvider>
+                                <Route path='/' exact component={Home} />
+                                <Route path='/subject' component={Subject} />
+                                <Route path="/City" component={City} />
+                                <Route path='/Birthplace' component={Birthplace} />
+                                <Route path='/Main' component={Main} />
+                                <Route path='/Professor' component={Professor} />
+                                <Route path='/SignUp' component={SignUp} />
+                            </CrudProvider>
+                        </StudentPrivateRoute>
+                        <ProfessorPrivateRoute>
                                 <CrudProvider>
                                     <Route path='/' exact component={Home} />
                                     <Route path='/subject' component={Subject} />
@@ -107,10 +99,55 @@ export default function Routes() {
                                     <Route path='/Professor' component={Professor} />
                                     <Route path='/SignUp' component={SignUp} />
                                 </CrudProvider>
-                            </Switch>
-                        </HomeProvider>
-                    </ProfessorPrivateRoute>
-                </PrivateRoute>
+                        </ProfessorPrivateRoute>
+                    </PrivateRoute>
+                    </HomeProvider>
+                </Switch>
+            </Router> */}
+
+            <Router>
+                <HomeProvider>
+                    {/* <Container maxWidth="sm">
+                        <Switch>
+
+                            <Route path="\login" exact component={Login} />
+                            <Route path="\SignUp" exact component={SignUp} />
+
+                        </Switch>
+                    </Container> */}
+
+
+                    <Switch>
+                        <CrudProvider>
+                                <Route path='/' >
+                                    <Home />
+                                </Route>
+                                <Route path='/subject' >
+                                    <Subject />
+                                </Route>
+                                <Route path='/City' >
+                                    <City />
+                                </Route>
+                                <Route path='/Birthplace' >
+                                    <Birthplace />
+                                </Route>
+                                <Route path='/Maain' >
+                                    <a />
+                                </Route>
+                                <Route path='/Professor' >
+                                    <Professor />
+                                </Route>
+                                {/* <Route path='/subject' component={Subject} />
+                                <Route path="/City" component={City} />
+                                <Route path='/Birthplace' component={Birthplace} />
+                                <Route path='/Main' component={Main} />
+                                <Route path='/Professor' component={Professor} />
+                                <Route path='/SignUp' component={SignUp} />
+                                <Route path="/login" component={Login}></Route> */}
+                        </CrudProvider>
+
+                    </Switch>
+                </HomeProvider>
             </Router>
         </>
     );
