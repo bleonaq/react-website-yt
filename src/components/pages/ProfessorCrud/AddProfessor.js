@@ -15,8 +15,8 @@ function AddProfessor() {
     const [cityId, setCityId] = useState(0);
     const [genders, setGenders] = useState([]);
     const [genderId, setGenderId] = useState(0);
-    const[subjects,setSubjects]=useState([]);
-    const[subjectId,setSubjectId]=useState([0])
+    const [subjects, setSubjects] = useState([]);
+    const [subjectId, setSubjectId] = useState([0])
     useEffect(() => {
         getItems();
     }, []);
@@ -44,19 +44,19 @@ function AddProfessor() {
 
             })
 
-            api.post('/Professor/professorSubject',data)
-            .then((data) =>{
-                setShow(false);
-                dispatchCrud({type:'inesrt',payload:data.data});
-                reset({
-                    subjectId:""
-                })
-            }).catch((error) =>{
-                console.log("error",error);
-            })
+        //  api.post('/Professor/professorSubject',data)
+        // .then((data) =>{
+        //     setShow(false);
+        //    dispatchCrud({type:'insert',payload:data.data});
+        //    reset({
+        //        subjectId:""
+        //    })
+        //  }).catch((error) =>{
+        //      console.log("error",error);
+        //  })
     }
 
- 
+
     const getItems = async () => {
         await api
             .get("/administration/getAllBirthPlaces")
@@ -186,7 +186,7 @@ function AddProfessor() {
                                 </Form.Control>
                             </Form.Group>
                         </Form.Group>
-                
+
                         <Form.Group>
                             <Form.Group controllId="exampleForm.ControlSelect1">
                                 <Form.Label>Gjinia</Form.Label>
@@ -242,26 +242,14 @@ function AddProfessor() {
                                 Ruaj
                             </Button>
                         </Form.Group>
-                        
-
-
                     </Form>
                 </Modal.Body>
-
-
-
-            <Modal.Footer>
-                <Button variant="secondary" onClick={() => setShow(false)}>
-                    Mbyll
-                </Button>
-            </Modal.Footer>
-
-
-
-        </Modal>
-
-
-
+                <Modal.Footer>
+                    <Button variant="secondary" onClick={() => setShow(false)}>
+                        Mbyll
+                    </Button>
+                </Modal.Footer>
+            </Modal>
 
         </>
     )

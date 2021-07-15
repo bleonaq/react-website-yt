@@ -36,13 +36,13 @@ function TodoForm(props) {
             className='todo-input edit'
           />
           <button onClick={handleSubmit} className='todo-button edit'>
-            Update
+            Modifiko
           </button>
         </>
       ) : (
         <>
           <input
-            placeholder='Add a todo'
+            placeholder='Shto'
             value={input}
             onChange={handleChange}
             name='text'
@@ -50,7 +50,7 @@ function TodoForm(props) {
             ref={inputRef}
           />
           <button onClick={handleSubmit} className='todo-button'>
-            Add todo
+            Shto
           </button>
         </>
       )}
