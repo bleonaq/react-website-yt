@@ -33,7 +33,7 @@ const Login = () => {
         await api.post('/authenticate/login', userData).then(res => {
             email.onClear();
             password.onClear();
-            history.push('/Main');
+            history.push('/');
             toast("You are logged in now " + (res.data.name));
             dispatch({ type: 'login', payload: res.data });
         }).catch(error => {

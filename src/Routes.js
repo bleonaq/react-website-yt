@@ -6,7 +6,6 @@ import { Redirect } from "react-router-dom";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Home from "./components/pages/Home/Home";
 import City from "./components/pages/CityCrud/City";
-import Main from "./components/pages/Dashboard/Main";
 import Navbar from "./components/pages/Nav-Button/Navbar";
 import TopNav from "./components/pages/Nav-Button/TopNav";
 import SignUp from "./components/pages/Login/Register/SignUp";
@@ -67,25 +66,29 @@ export default function Routes() {
         console.log(error);
       });
   };
-  //     <Route path="/subject">
-  //     <Subject />
-  // </Route>
-  // <Route path="/Birthplace">
-  //     <Birthplace />
-  // </Route>
-  // <Route path="/Main">
-  //     <Main />
-  // </Route>
-  // <Route path="/SignUp">
-  //     <SignUp />
-  // </Route>
+
   return (
     <>
       <Router>
       <HomeProvider>
 
         <Switch>
-            <PrivateRoute exact path="/"></PrivateRoute>
+        
+            <PrivateRoute exact path="/">
+            
+            <div id="wrapper">
+              <Navbar />
+              <div id="content-wrapper" className="d-flex flex-column">
+                <div id="content">
+                  <TopNav />
+                    <CrudProvider>
+                      <Home />
+                    </CrudProvider>
+                </div>
+              </div>
+            </div>
+          
+            </PrivateRoute>
           //#region Admin Route
           <AdminPrivateRoute exact path="/Student">
             <div id="wrapper">
@@ -113,19 +116,6 @@ export default function Routes() {
               </div>
             </div>
           </AdminPrivateRoute> */}
-          <AdminPrivateRoute exact path="/Main">
-            <div id="wrapper">
-              <Navbar />
-              <div id="content-wrapper" className="d-flex flex-column">
-                <div id="content">
-                  <TopNav />
-                    <CrudProvider>
-                      <Home />
-                    </CrudProvider>
-                </div>
-              </div>
-            </div>
-          </AdminPrivateRoute>
           <AdminPrivateRoute exact path="/Professor">
             <div id="wrapper">
               <Navbar />
@@ -223,11 +213,11 @@ export default function Routes() {
 
 function PrivateRoute({ children, ...rest }) {
   const { user } = useAppContext();
-
+console.log(user);
   return (
     <Route
       {...rest}
-      render={() => (user.token !== "" ? <Home/> : <Login />)}
+      render={() => (user.token !== "" ? children: <Login />)}
     />
   );
 }
@@ -253,7 +243,6 @@ function AdminPrivateRoute({ children, ...rest }) {
       );
     }
   }
-
   if (user.token !== "") {
     return (
       <Route
@@ -263,9 +252,7 @@ function AdminPrivateRoute({ children, ...rest }) {
     );
   } else {
     return (
-      <Route>
         <Login />
-      </Route>
     );
   }
 }
