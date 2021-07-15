@@ -5,7 +5,6 @@ import EditCity from './EditCity';
 import { useCrudContext } from "../../../providers/CrudProvider";
 
 function CityItem({ cityId, cityName }) {
-    console.log(cityName);
     const { data, dispatchCrud } = useCrudContext();
     const onDeleteHandle = () => {
 
