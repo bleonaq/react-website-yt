@@ -1,14 +1,14 @@
 import React, { Component, useEffect, useState } from "react";
 import { Table } from "react-bootstrap";
 import { useForm } from "react-hook-form";
-import AddStudent from "./AddStudent";
+//import AddStudent from "./AddStudent";
 import api from "../../../AxiosCall";
 import StudentItems from "./StudentItems";
 import { useCrudContext } from "../../../providers/CrudProvider";
 import { useAppContext } from "../../../providers/AppProvider";
 import PostGrades from "./PostGrades";
 
-function Student() {
+function StudentGrades() {
   const { user } = useAppContext();
 
   const { register, handleSubmit, reset } = useForm();
@@ -22,7 +22,7 @@ function Student() {
 
   const getItems = async () => {
     await api
-      .get("/Student/getAllStudents")
+      .get("/Grades")
       .then((res) => {
         dispatchCrud({ type: "init", payload: res.data });
       })
@@ -36,28 +36,27 @@ function Student() {
       <div className="col-xl-8 col-lg-7">
         <div className="card shadow mb-4">
           <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-            <h6 class="m-0 font-weight-bold text-primary">Studentet</h6>
+            <h6 class="m-0 font-weight-bold text-primary">Notat</h6>
           </div>
-         {/* <div className="col order-second">
+          <div className="col order-second">
           <PostGrades />
-  </div> */}
-          <div className="col order-first">
-          <AddStudent />
-          </div>
+  </div> 
+         
           <div class="card-body">
             <Table responsive="sm" className="mt-3">
               <thead>
                 <tr>
                   <th>Emri</th>
                   <th>Mbiemri</th>
-                  <th>Modifiko</th>
+                  <th>Nota</th>
+                
                 </tr>
               </thead>
               <tbody>
                 {data.map((d) => {
                   return (
                     <StudentItems
-                      key={(d.studentId, d.birthplaceId, d.cityId)}
+                      key={(d.studentId)}
                       {...d}
                     />
                   );
@@ -85,4 +84,4 @@ function Student() {
     // </div>
   );
 }
-export default Student;
+export default StudentGrades;

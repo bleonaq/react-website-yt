@@ -15,7 +15,8 @@ function AddStudent() {
     const [cityId, setCityId] = useState(0);
     const [genders, setGenders] = useState([]);
     const [genderId, setGenderId] = useState(0);
-    
+
+
     useEffect(() => {
         getItems();
     }, []);
@@ -42,6 +43,8 @@ function AddStudent() {
                 console.log("error", error);
 
             })
+
+
     }
 
     const getItems = async () => {
@@ -140,8 +143,6 @@ function AddStudent() {
                             <Form.Control type="text" placeholder="Data Lindjes"
                                 {...register("birthDate", { required: true, maxLength: 150 })} />
                         </Form.Group>
-
-                        
                         <Form.Group>
                             <Form.Group controllId="exampleForm.ControlSelect1">
                                 <Form.Label>Gjinia</Form.Label>
@@ -156,12 +157,6 @@ function AddStudent() {
                                 </Form.Control>
                             </Form.Group>
                         </Form.Group>
-
-
-
-
-
-
                         <Form.Group>
                             <Form.Group controllId="exampleForm.ControlSelect1">
                                 <Form.Label>Vendi Lindjes</Form.Label>
@@ -203,23 +198,17 @@ function AddStudent() {
                                 Ruaj
                             </Button>
                         </Form.Group>
-                        
-
-
                     </Form>
                 </Modal.Body>
+                <Modal.Footer>
+                    <Button variant="secondary" onClick={() => setShow(false)}>
+                        Mbyll
+                    </Button>
+                </Modal.Footer>
 
 
 
-            <Modal.Footer>
-                <Button variant="secondary" onClick={() => setShow(false)}>
-                    Mbyll
-                </Button>
-            </Modal.Footer>
-
-
-
-        </Modal>
+            </Modal>
 
 
 

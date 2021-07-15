@@ -19,6 +19,8 @@ import Professor from "./components/pages/ProfessorCrud/Professor";
 import NotFound from "./components/pages/NotFound";
 import Birthplace from "./components/pages/BirthplaceCrud/Birthplace";
 import Student from "./components/pages/StudentCrud/Student";
+import StudentGrades from "./components/pages/StudentCrud/StudentGrades";
+import ToDoList from "./components/pages/ToDo/ToDoList";
 import api from "./AxiosCall";
 import { createHashHistory } from "history";
 
@@ -129,6 +131,37 @@ export default function Routes() {
               </div>
             </div>
           </AdminPrivateRoute>
+          <AdminPrivateRoute exact path="/StudentGrades">
+            <div id="wrapper">
+              <Navbar />
+              <div id="content-wrapper" className="d-flex flex-column">
+                <div id="content">
+                  <TopNav />
+                    <CrudProvider>
+                      <StudentGrades />
+                    </CrudProvider>
+                </div>
+              </div>
+            </div>
+          </AdminPrivateRoute>
+        
+          <AdminPrivateRoute exact path="/ToDoList">
+            <div id="wrapper">
+              <Navbar />
+              <div id="content-wrapper" className="d-flex flex-column">
+                <div id="content">
+                  <TopNav />
+                    <CrudProvider>
+                      <ToDoList />
+                    </CrudProvider>
+                </div>
+              </div>
+            </div>
+          </AdminPrivateRoute>
+
+
+
+
           <AdminPrivateRoute exact path="/Subject">
             <div id="wrapper">
               <Navbar />
