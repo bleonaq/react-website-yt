@@ -22,6 +22,7 @@ import Birthplace from './components/pages/BirthplaceCrud/Birthplace';
 import Student from "./components/pages/StudentCrud/Student";
 import api from './AxiosCall';
 import { createHashHistory } from 'history'
+import ToDoList from "./components/pages/ToDo/ToDoList";
 
 export default function Routes() {
 
@@ -92,14 +93,14 @@ export default function Routes() {
                     </StudentPrivateRoute>
 
 
-                    <ProfessorPrivateRoute path="/Professor">
+                    <ProfessorPrivateRoute path="/ToDoList">
                         <div id="wrapper">
                             <Navbar />
                             <div id="content-wrapper" className="d-flex flex-column">
                                 <div id="content">
                                     <HomeProvider>
                                         <CrudProvider>
-                                            <Professor />
+                                            <ToDoList />
                                         </CrudProvider>
                                     </HomeProvider>
                                 </div>
