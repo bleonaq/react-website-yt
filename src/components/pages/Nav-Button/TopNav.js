@@ -1,5 +1,13 @@
 import { useAppContext } from "../../../providers/AppProvider";
 import { useHistory, Link } from "react-router-dom";
+import {
+  Dropdown,
+  DropdownToggle,
+  DropdownMenu,
+  DropdownItem,
+} from "reactstrap";
+import React, { useState } from "react";
+import "../../../assets/css/bootstrap/css/bootstrap.min.css";
 
 export default function TopNav() {
   const { user, dispatch } = useAppContext();
@@ -9,6 +17,9 @@ export default function TopNav() {
     dispatch({ type: "logout" });
     history.push("/");
   };
+  const [dropdownOpen, setDropdownOpen] = useState(false);
+
+  const toggle = () => setDropdownOpen((prevState) => !prevState);
   return (
     <>
       <nav className="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
@@ -20,18 +31,29 @@ export default function TopNav() {
         </button>
 
         <ul className="navbar-nav ml-auto">
-          <li>
-            <div className="topbar-divider d-none d-sm-block"></div>
+          <li className="nav-item dropdown no-arrow">
             <button
-              className="btn btn-outline btn-success"
+              className="nav-link dropdown-toggle"
+              href="#"
+              id="userDropdown"
+              role="button"
+              data-toggle="dropdown"
+              aria-haspopup="true"
+              aria-expanded="false"
               onClick={onLogoutHandel}
+              style={{
+                background: "transparent",
+                outline: "none",
+                border: "none",
+              }}
             >
-              <p className="h4 m-0">
-                <i className="feather-log-out"></i>
+              <i class="fas fa-sign-out-alt"></i>
+              <span className="mr-2 ml-3 d-none d-lg-inline text-gray-600 small">
                 LogOut
-              </p>
+              </span>
             </button>
           </li>
+            <div className="topbar-divider d-none d-sm-block"></div>
           <li className="nav-item dropdown no-arrow">
             <a
               className="nav-link dropdown-toggle"
@@ -47,33 +69,6 @@ export default function TopNav() {
                 {user.name}
               </span>
             </a>
-            <div
-              className="dropdown-menu dropdown-menu-right shadow animated--grow-in"
-              aria-labelledby="userDropdown"
-            >
-              <a className="dropdown-item" href="#">
-                <i className="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                Profile
-              </a>
-              <a className="dropdown-item" href="#">
-                <i className="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
-                Settings
-              </a>
-              <a className="dropdown-item" href="#">
-                <i className="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
-                Activity Log
-              </a>
-              <div className="dropdown-divider"></div>
-              <a
-                className="dropdown-item"
-                href="#"
-                data-toggle="modal"
-                data-target="#logoutModal"
-              >
-                <i className="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                Logout
-              </a>
-            </div>
           </li>
         </ul>
       </nav>

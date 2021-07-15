@@ -8,7 +8,6 @@ import Home from "./components/pages/Home/Home";
 import City from "./components/pages/CityCrud/City";
 import Navbar from "./components/pages/Nav-Button/Navbar";
 import TopNav from "./components/pages/Nav-Button/TopNav";
-import SignUp from "./components/pages/Login/Register/SignUp";
 import Login from "./components/pages/Login/Register/Login";
 import Container from "react-bootstrap/Container";
 import { useAppContext } from "./providers/AppProvider";
@@ -89,6 +88,7 @@ export default function Routes() {
             </div>
           
             </PrivateRoute>
+            
           //#region Admin Route
           <AdminPrivateRoute exact path="/Student">
             <div id="wrapper">
@@ -202,8 +202,20 @@ export default function Routes() {
                 </div>
               </div>
             </div>
-          </ProfessorPrivateRoute> 
-          //#endregion
+            </ProfessorPrivateRoute>
+            <AdminPrivateRoute exact path="/*">
+            <div id="wrapper">
+              <Navbar />
+              <div id="content-wrapper" className="d-flex flex-column">
+                <div id="content">
+                  <TopNav />
+                    <CrudProvider>
+                      <NotFound />
+                    </CrudProvider>
+                </div>
+              </div>
+            </div>
+          </AdminPrivateRoute>
         </Switch>
         </HomeProvider>
       </Router>
@@ -247,7 +259,7 @@ function AdminPrivateRoute({ children, ...rest }) {
     return (
       <Route
         {...rest}
-        render={() => (roles.includes("Admin") ? children : <NotFound />)}
+        render={() => (roles.includes("Admin") ? children : <div id="wrapper"><Navbar /><div id="content-wrapper" className="d-flex flex-column"><div id="content"><TopNav /></div></div></div>)}
       />
     );
   } else {
