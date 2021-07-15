@@ -23,38 +23,49 @@ function ProfessorItem({ professorId, firstName, parentName, lastName, personalN
         setShow(true);
     };
     return (
-        <Table striped bordered hover size="sm">
-            
-            <tr>
-               
-                <td style={{ width: "50%" }}>{firstName}</td>
-                
-                <td style={{ width: "50%" }}>{lastName}</td>
-                <td>
-                    
-                    <Button
-                        className="mr-1"
-                        type="button"
-                        variant="info"
-                        size="sm"
-                        onClick={onEditHandle}
-                    >
-                        <i className="feather-edit">Modifiko</i>
-                    </Button>
-                    <Button
-                        type="button"
-                        variant="danger"
-                        onClick={onDeleteHandle}
-                        size="sm"
-                    >
-                        <i className="feather-trash">Fshij</i>
-                    </Button>
-                    <EditProfessor {...{ show, professorId, firstName, lastName, personalNo, birthDate, genderId, birthplaceId, cityId, phoneNumber, email, handleClose }}> </EditProfessor>
-                </td>
-                
-            </tr>
-            
-        </Table >
+        <tr>
+        <td>{firstName}</td>
+  
+        <td>{lastName}</td>
+        <td>
+          <Button
+            className="mr-1"
+            type="button"
+            variant="info"
+            size="sm"
+            onClick={onEditHandle}
+          >
+            <i className="feather-edit">Modifiko</i>
+          </Button>
+          <Button
+            type="button"
+            variant="danger"
+            onClick={onDeleteHandle}
+            size="sm"
+          >
+            <i className="feather-trash">Fshij</i>
+          </Button>
+          <EditProfessor
+            {...{
+              show,
+              professorId,
+              firstName,
+              lastName,
+              personalNo,
+              birthDate,
+              genderId,
+              birthplaceId,
+              cityId,
+              phoneNumber,
+              email,
+              handleClose,
+            }}
+          >
+            {" "}
+          </EditProfessor>
+        </td>
+      </tr>
     );
 }
 export default ProfessorItem;
+

@@ -34,27 +34,40 @@ function Professor() {
 
     return (
 
-        <div >
-            <div>
-                <AddProfessor />
-            </div>
-            <Table responsive>
-                
-                    
-                    <thead>
-                    
-                       
-                    </thead>
-                    
+            <div className="container-fluid">
+              <div className="col-xl-8 col-lg-7">
+                <div className="card shadow mb-4">
+                  <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                    <h6 class="m-0 font-weight-bold text-primary">Profesoret</h6>
+                  </div>
+                  <div className="col-md-1 mt-3">
+                  <AddProfessor />
+                  </div>
+                  <div class="card-body">
+                    <Table responsive="sm" className="mt-3">
+                      <thead>
+                        <tr>
+                          <th>Emri</th>
+                          <th>Mbiemri</th>
+                          <th>Modifiko</th>
+                        </tr>
+                      </thead>
+                      <tbody>
                         {data.map((d) => {
-                            return <ProfessorItem key={d.professorId,d.birthplaceId,d.cityId} {...d} />
+                          return (
+                            <ProfessorItem
+                              key={(d.professorId, d.birthplaceId, d.cityId)}
+                              {...d}
+                            />
+                          );
                         })}
-
-                
-
-                
-            </Table>
-        </div>
+                      </tbody>
+                    </Table>
+                  </div>
+                </div>
+              </div>
+            </div>
+      
 
     )
 }

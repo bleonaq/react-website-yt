@@ -44,9 +44,9 @@ function Student() {
             <Table responsive="sm" className="mt-3">
               <thead>
                 <tr>
-                  <th>First Name</th>
-                  <th>Last Name</th>
-                  <th>Modify</th>
+                  <th>Emri</th>
+                  <th>Mbiemri</th>
+                  <th>Modifiko</th>
                 </tr>
               </thead>
               <tbody>

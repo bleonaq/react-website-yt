@@ -24,31 +24,34 @@ function CityItem({ cityId, cityName }) {
     };
 
     return (
-        <Table striped bordered hover size="sm">
-            <tr>
-                <td style={{ width: "50%" }}>{cityName}</td>
-                <td>
-                    <Button
-                        className="mr-1"
-                        type="button"
-                        variant="info"
-                        size="sm"
-                        onClick={onEditHandle}
-                    >
-                        <i className="feather-edit">Modifiko</i>
-                    </Button>
-                    <Button
-                        type="button"
-                        variant="danger"
-                        onClick={onDeleteHandle}
-                        size="sm"
-                    >
-                        <i className="feather-trash">Fshij</i>
-                    </Button>
-                    <EditCity {...{ show, cityName, cityId, handleClose }}> </EditCity>
-                </td>
-            </tr>
-        </Table>
+
+        <tr>
+            <td>{cityName}</td>
+            <td>
+                <Button
+                    className="mr-1"
+                    type="button"
+                    variant="info"
+                    size="sm"
+                    onClick={onEditHandle}
+                >
+                    <i className="feather-edit">Modifiko</i>
+                </Button>
+                <Button
+                    type="button"
+                    variant="danger"
+                    onClick={onDeleteHandle}
+                    size="sm"
+                >
+                    <i className="feather-trash">Fshij</i>
+                </Button>
+                <EditCity {...{ show, cityName, cityId, handleClose }}
+                >
+                    {""}
+                </EditCity>
+            </td>
+        </tr>
+
     );
 }
 

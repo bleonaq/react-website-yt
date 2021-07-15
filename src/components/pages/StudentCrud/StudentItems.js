@@ -60,6 +60,7 @@ function StudentItem({
             show,
             studentId,
             firstName,
+            parentName,
             lastName,
             personalNo,
             birthDate,

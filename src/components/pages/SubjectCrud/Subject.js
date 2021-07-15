@@ -9,56 +9,65 @@ import { useAppContext } from '../../../providers/AppProvider';
 
 function Subject() {
 
-const {user}= useAppContext();
+    const { user } = useAppContext();
 
-    const{register,handleSubmit,reset}=useForm();
-    const[show,setShow]=useState(false);
-    const[subjects,setSubjects]=useState([]);
-    const{data,dispatchCrud} =useCrudContext();
+    const { register, handleSubmit, reset } = useForm();
+    const [show, setShow] = useState(false);
+    const [subjects, setSubjects] = useState([]);
+    const { data, dispatchCrud } = useCrudContext();
     useEffect(() => {
         console.log(user);
         getItems();
     }, []);
-    
+
     const getItems = async () => {
         await api.get('/Subject/getAllSubjects')
-        .then(res => {
-            console.log(res);
-            dispatchCrud({type:'init',payload: res.data})
-        })
-        .catch(error =>{
-        console.log(error);
-         });
-}
+            .then(res => {
+                console.log(res);
+                dispatchCrud({ type: 'init', payload: res.data })
+            })
+            .catch(error => {
+                console.log(error);
+            });
+    }
 
-return(
+    return (
 
-    <div >
-         <div>
-            <AddSubject/>
+
+        <div className="container-fluid">
+            <div className="col-xl-8 col-lg-7">
+                <div className="card shadow mb-4">
+                    <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                        <h6 class="m-0 font-weight-bold text-primary">Lendet</h6>
+                    </div>
+                    <div className="col-md-1 mt-3">
+                        <AddSubject />
+                    </div>
+                    <div class="card-body">
+                        <Table responsive="sm" className="mt-3">
+                            <thead>
+                                <tr>
+                                    <th>Emri lendes</th>
+                                    <th>Modifiko</th>
+                                    
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {data.map((d) => {
+                                    return (
+                                        <SubjectItem
+                                            key={(d.subjectId)}
+                                            {...d}
+                                        />
+                                    );
+                                })}
+                            </tbody>
+                        </Table>
+                    </div>
+                </div>
+            </div>
         </div>
-    <Table responsive>
-    <table class ="table table-sm">
-        
-        <thead>
-            <tr>
-            
-                <th>Emri i Lendes</th>
-                
-            </tr>
-        </thead>
-        <tbody>
-            {data.map((d) => {
-                return <SubjectItem key={d.subjectId} {...d} />
-            })}
-
-        </tbody>
-
-    </table>
-    </Table>
-</div>
-
-)
+    )
 }
 export default Subject;
 

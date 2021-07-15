@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Button,Table } from "react-bootstrap";
+import { Button, Table } from "react-bootstrap";
 import api from "../../../AxiosCall";
 import EditSubject from './EditSubject';
 import { useCrudContext } from "../../../providers/CrudProvider";
@@ -23,9 +23,10 @@ function SubjectItem({ subjectId, subjectName }) {
         setShow(true);
     };
     return (
-        <Table striped bordered hover size="sm">
         <tr>
-            <td  style={{ width: "50%" }}>{subjectName}</td>
+            <td>{subjectName}</td>
+
+            
             <td>
                 <Button
                     className="mr-1"
@@ -44,10 +45,17 @@ function SubjectItem({ subjectId, subjectName }) {
                 >
                     <i className="feather-trash">Fshij</i>
                 </Button>
-                <EditSubject {...{ show, subjectName, subjectId, handleClose }}> </EditSubject>
+                <EditSubject
+                    {...{
+                        show,
+                        subjectName,
+                        handleClose
+                    }}
+                >
+                    {" "}
+                </EditSubject>
             </td>
         </tr>
-        </Table>
     );
 }
 export default SubjectItem;
