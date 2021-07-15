@@ -1,8 +1,14 @@
 import { useAppContext } from "../../../providers/AppProvider";
+import { useHistory, Link } from "react-router-dom";
 
 export default function TopNav() {
-  const { user } = useAppContext();
-
+  const { user, dispatch } = useAppContext();
+  const history = useHistory();
+  const onLogoutHandel = async (event) => {
+    event.preventDefault();
+    dispatch({ type: "logout" });
+    history.push("/");
+  };
   return (
     <>
       <nav className="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
@@ -14,8 +20,18 @@ export default function TopNav() {
         </button>
 
         <ul className="navbar-nav ml-auto">
-          <div className="topbar-divider d-none d-sm-block"></div>
-
+          <li>
+            <div className="topbar-divider d-none d-sm-block"></div>
+            <button
+              className="btn btn-outline btn-success"
+              onClick={onLogoutHandel}
+            >
+              <p className="h4 m-0">
+                <i className="feather-log-out"></i>
+                LogOut
+              </p>
+            </button>
+          </li>
           <li className="nav-item dropdown no-arrow">
             <a
               className="nav-link dropdown-toggle"

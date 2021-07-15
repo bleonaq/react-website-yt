@@ -19,9 +19,9 @@ function Navbar() {
   useEffect(() => {
     showButton();
   }, []);
-
+  console.log(user.role);
   window.addEventListener("resize", showButton);
-  if(user.role === "Admin"){
+  if(user.role == "Admin"){
   return (
     <>
       <ul
@@ -92,7 +92,7 @@ function Navbar() {
     </>
   );
 }
-else if(user.role === "Student"){
+else if(user.role == "Student"){
     return (
       <>
         <ul
@@ -139,7 +139,7 @@ else if(user.role === "Student"){
       </>
     );
   }
-  else if(user.role === "Professor"){
+  else if(user.role == "Professor"){
     return (
       <>
         <ul
