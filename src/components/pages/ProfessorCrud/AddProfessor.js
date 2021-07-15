@@ -186,11 +186,7 @@ function AddProfessor() {
                                 </Form.Control>
                             </Form.Group>
                         </Form.Group>
-                 
-
-
-
-                        
+                
                         <Form.Group>
                             <Form.Group controllId="exampleForm.ControlSelect1">
                                 <Form.Label>Gjinia</Form.Label>
