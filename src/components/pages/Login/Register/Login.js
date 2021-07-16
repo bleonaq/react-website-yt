@@ -37,6 +37,7 @@ const Login = () => {
         history.push("/");
         toast("You are logged in now " + res.data.name);
         dispatch({ type: "login", payload: res.data });
+        sessionStorage.setItem('password',userData.password);      
       })
       .catch((error) => {
         console.log(error);
@@ -82,7 +83,6 @@ const Login = () => {
                       </div>
                       <button
                         type="submit"
-                        href="index.html"
                         className="btn btn-primary btn-user btn-block"
                       >
                         Login

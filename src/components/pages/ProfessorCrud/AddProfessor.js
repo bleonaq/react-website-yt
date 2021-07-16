@@ -23,7 +23,6 @@ function AddProfessor() {
     }, []);
 
     const onHandleSubmit = (data) => {
-        console.log(data);
         api.post('/Professor/professorPost', data)
             .then((data) => {
                 setShow(false);

@@ -1,25 +1,34 @@
-import React, { Component, useState } from "react";
+import React, { Component, useState, useEffect } from "react";
 import { Modal, Button, Row, Col, Form } from "react-bootstrap";
 import { useForm } from "react-hook-form";
 import api from "../../../AxiosCall";
 import { useCrudContext } from "../../../providers/CrudProvider";
+import { useAppContext } from "../../../providers/AppProvider";
 
-function AddCity() {
+function AddExam() {
   const { register, handleSubmit, reset } = useForm();
   const [show, setShow] = useState(false);
   const { dispatchCrud } = useCrudContext();
+  const { user } = useAppContext();
+
   const onHandleSubmit = (data) => {
     api
-      .post("/Administration/cityPost", data)
+      .post("/Exams/examPost", data, {
+        headers: { Authorization: `Bearer ${user.token}` },
+      })
       .then((data) => {
+        console.log(data);
         setShow(false);
-        dispatchCrud({ type: "insert", payload: data.data });
-        reset({ cityName: "" });
+        reset({
+          description: "",
+          dateOfRetention: "",
+        });
       })
       .catch((error) => {
-        console.log("error ->", error);
+        console.log("error", error);
       });
   };
+
   return (
     <>
       <Button variant="success" size="sm" onClick={() => setShow(true)}>
@@ -33,16 +42,27 @@ function AddCity() {
         keyboard={false}
       >
         <Modal.Header closeButton>
-          <Modal.Title>Regjistro qytet te ri</Modal.Title>
+          <Modal.Title>Regjistro Provim</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <Form onSubmit={handleSubmit(onHandleSubmit)}>
             <Form.Group>
-              <Form.Label>Emri i Qytetit</Form.Label>
+              <Form.Label>Pershkrimi</Form.Label>
               <Form.Control
                 type="text"
-                placeholder="Emri i qytetit"
-                {...register("cityName", { required: true, maxLength: 150 })}
+                placeholder="Pershkrimi"
+                {...register("description", { required: true, maxLength: 150 })}
+              />
+            </Form.Group>
+            <Form.Group>
+              <Form.Label>Data e mbajtjes</Form.Label>
+              <Form.Control
+                type="text"
+                placeholder="Data"
+                {...register("dateOfRetention", {
+                  required: true,
+                  maxLength: 150,
+                })}
               />
             </Form.Group>
             <Form.Group>
@@ -61,4 +81,4 @@ function AddCity() {
     </>
   );
 }
-export default AddCity;
+export default AddExam;

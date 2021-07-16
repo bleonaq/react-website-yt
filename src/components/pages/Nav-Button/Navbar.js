@@ -37,7 +37,6 @@ function Navbar() {
           </div>
           <div className="sidebar-brand-text mx-3">Management System</div>
         </a>
-
         <li className="nav-item active">
           <Link className="nav-link" to="/">
           <i class="fas fa-fw fa-tachometer-alt"></i>
@@ -88,13 +87,6 @@ function Navbar() {
             <span> Grades</span>
           </Link>
         </li>
-
-        <li className="nav-item">
-          <Link className="nav-link" to="/ToDoList">
-            <i class="fas fa-user-tie"></i>
-            <span> To Do List</span>
-          </Link>
-        </li>
         <div className="text-center d-none d-md-inline">
           <button
             className="rounded-circle border-0"
@@ -136,12 +128,23 @@ else if(user.role == "Student"){
             </Link>
           </li>
           <li className="nav-item">
-            <Link className="nav-link" to="/Professor">
+            <Link className="nav-link" to="/GradesForStudents">
               <i class="fas fa-user-tie"></i>
-              <span> Professors</span>
+              <span> Notat</span>
             </Link>
           </li>
-  
+          <li className="nav-item">
+            <Link className="nav-link" to="/StudentExams">
+              <i class="fas fa-user-tie"></i>
+              <span>Provimet</span>
+            </Link>
+          </li>
+          <li className="nav-item">
+            <Link className="nav-link" to="/StudentHomework">
+              <i class="fas fa-user-tie"></i>
+              <span>Detyra te shtepise</span>
+            </Link>
+          </li>
           <div className="text-center d-none d-md-inline">
             <button
               className="rounded-circle border-0"
@@ -177,42 +180,23 @@ else if(user.role == "Student"){
           </li>
           <hr class="sidebar-divider"></hr>
           <li className="nav-item">
-            <Link className="nav-link" to="/">
+            <Link className="nav-link" to="/ProfessorExams">
             <i class="fas fa-home"></i>
-              <span> Home</span>
+              <span> Provimet</span>
             </Link>
           </li>
           <li className="nav-item">
-            <Link className="nav-link" to="/City">
+            <Link className="nav-link" to="/">
             <i class="fas fa-city"></i>
-              <span> Cities</span>
+              <span> Detyrat e shtepise</span>
             </Link>
           </li>
           <li className="nav-item">
-            <Link className="nav-link" to="/Birthplace">
+            <Link className="nav-link" to="/PostGrades">
             <i class="fas fa-city"></i>
-              <span> Birthplaces</span>
+              <span> Notat</span>
             </Link>
           </li>
-          <li className="nav-item">
-            <Link className="nav-link" to="/Subject">
-            <i class="fas fa-clipboard"></i>            
-            <span> Subjects</span>
-            </Link>
-          </li>
-          <li className="nav-item">
-            <Link className="nav-link" to="/Student">
-            <i class="fas fa-users"></i>            
-            <span> Students</span>
-            </Link>
-          </li>
-          <li className="nav-item">
-            <Link className="nav-link" to="/Professor">
-              <i class="fas fa-user-tie"></i>
-              <span> Professors</span>
-            </Link>
-          </li>
-  
           <div className="text-center d-none d-md-inline">
             <button
               className="rounded-circle border-0"

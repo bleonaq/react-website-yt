@@ -9,6 +9,7 @@ import City from "./components/pages/CityCrud/City";
 import Navbar from "./components/pages/Nav-Button/Navbar";
 import TopNav from "./components/pages/Nav-Button/TopNav";
 import Login from "./components/pages/Login/Register/Login";
+import GradesForStudent from "./components/pages/StudentCrud/GradesForStudent";
 import Container from "react-bootstrap/Container";
 import { useAppContext } from "./providers/AppProvider";
 import CrudProvider from "./providers/CrudProvider";
@@ -20,9 +21,13 @@ import Birthplace from "./components/pages/BirthplaceCrud/Birthplace";
 import Student from "./components/pages/StudentCrud/Student";
 import StudentGrades from "./components/pages/StudentCrud/StudentGrades";
 import ToDoList from "./components/pages/ToDo/ToDoList";
+import ProfessorExams from "./components/pages/ProfessorCrud/ProfessorExams";
+
+import HomeworkStudent from "./components/pages/StudentCrud/HomeworkStudent";
 import api from "./AxiosCall";
 import { createHashHistory } from "history";
-
+import StudentExams from "./components/pages/StudentCrud/StudentExams";
+import PostGrades from "./components/pages/StudentCrud/PostGrades";
 export default function Routes() {
   const { user, dispatch } = useAppContext();
   let roles = [];
@@ -173,7 +178,7 @@ export default function Routes() {
           //#endregion 
           
           //#region Student Route
-         {/* <StudentPrivateRoute exact path="/">
+         <StudentPrivateRoute exact path="/GradesForStudents">
             <div id="wrapper">
               <Navbar />
               <div id="content-wrapper" className="d-flex flex-column">
@@ -181,45 +186,71 @@ export default function Routes() {
                   <TopNav />
                   <HomeProvider>
                     <CrudProvider>
-                      <Home />
+                      <GradesForStudent />
                     </CrudProvider>
                   </HomeProvider>
                 </div>
               </div>
             </div>
-          </StudentPrivateRoute> */}
+          </StudentPrivateRoute>
+          <StudentPrivateRoute exact path="/StudentExams">
+            <div id="wrapper">
+              <Navbar />
+              <div id="content-wrapper" className="d-flex flex-column">
+                <div id="content">
+                  <TopNav />
+                  <HomeProvider>
+                    <CrudProvider>
+                      <StudentExams />
+                    </CrudProvider>
+                  </HomeProvider>
+                </div>
+              </div>
+            </div>
+          </StudentPrivateRoute>
+          <StudentPrivateRoute exact path="/StudentHomework">
+            <div id="wrapper">
+              <Navbar />
+              <div id="content-wrapper" className="d-flex flex-column">
+                <div id="content">
+                  <TopNav />
+                  <HomeProvider>
+                    <CrudProvider>
+                      <HomeworkStudent />
+                    </CrudProvider>
+                  </HomeProvider>
+                </div>
+              </div>
+            </div>
+          </StudentPrivateRoute>
           //#endregion 
           //#region Professor Route
-         <ProfessorPrivateRoute path="/">
-            <div id="wrapper">
-              <Navbar />
-              <div id="content-wrapper" className="d-flex flex-column">
-                <div id="content">
-                  <TopNav />
-                  <HomeProvider>
-                    <CrudProvider>
-                      <Home />
-                    </CrudProvider>
-                  </HomeProvider>
-                </div>
-              </div>
-            </div>
-            </ProfessorPrivateRoute>
-            <ProfessorPrivateRoute exact path="/ToDoList">
+          <ProfessorPrivateRoute exact path="/PostGrades">
             <div id="wrapper">
               <Navbar />
               <div id="content-wrapper" className="d-flex flex-column">
                 <div id="content">
                   <TopNav />
                     <CrudProvider>
-                      <ToDoList />
+                      <PostGrades />
                     </CrudProvider>
                 </div>
               </div>
             </div>
           </ProfessorPrivateRoute>
-          
-         
+          <ProfessorPrivateRoute exact path="/ProfessorExams">
+            <div id="wrapper">
+              <Navbar />
+              <div id="content-wrapper" className="d-flex flex-column">
+                <div id="content">
+                  <TopNav />
+                    <CrudProvider>
+                      <ProfessorExams />
+                    </CrudProvider>
+                </div>
+              </div>
+            </div>
+          </ProfessorPrivateRoute>
           //#endregion
             <AdminPrivateRoute exact path="/*">
             <div id="wrapper">
@@ -234,6 +265,19 @@ export default function Routes() {
               </div>
             </div>
           </AdminPrivateRoute>
+          <StudentPrivateRoute exact path="/*">
+            <div id="wrapper">
+              <Navbar />
+              <div id="content-wrapper" className="d-flex flex-column">
+                <div id="content">
+                  <TopNav />
+                    <CrudProvider>
+                      <NotFound />
+                    </CrudProvider>
+                </div>
+              </div>
+            </div>
+          </StudentPrivateRoute>
         </Switch>
         </HomeProvider>
       </Router>
@@ -243,7 +287,6 @@ export default function Routes() {
 
 function PrivateRoute({ children, ...rest }) {
   const { user } = useAppContext();
-console.log(user);
   return (
     <Route
       {...rest}
@@ -277,7 +320,7 @@ function AdminPrivateRoute({ children, ...rest }) {
     return (
       <Route
         {...rest}
-        render={() => (roles.includes("Admin") ? children : <div id="wrapper"><Navbar /><div id="content-wrapper" className="d-flex flex-column"><div id="content"><TopNav /></div></div></div>)}
+        render={() => (roles.includes("Admin") ? children : <NotFound/>)}
       />
     );
   } else {
@@ -308,30 +351,18 @@ function StudentPrivateRoute({ children, ...rest }) {
       );
     }
   }
-  console.log(roles);
-
   if (user.token !== "") {
     return (
       <Route
         {...rest}
-        render={() => (roles.includes("Student") ? children : <NotFound />)}
+        render={() => (roles.includes("Student") ? children : <div id="wrapper"><Navbar /><div id="content-wrapper" className="d-flex flex-column"><div id="content"><TopNav /></div></div></div>)}
       />
     );
   } else {
     return (
-      <Route>
         <Login />
-      </Route>
     );
   }
-  //   return (
-  //     <Route
-  //       {...rest}
-  //       render={() =>
-  //         user.token !== "" && roles.includes("Student") ? children : <Login />
-  //       }
-  //     />
-  //   );
 }
 
 function ProfessorPrivateRoute({ children, ...rest }) {
@@ -359,14 +390,12 @@ function ProfessorPrivateRoute({ children, ...rest }) {
     return (
       <Route
         {...rest}
-        render={() => (roles.includes("Professor") ? children : <NotFound />)}
+        render={() => (roles.includes("Professor") ? children : <div id="wrapper"><Navbar /><div id="content-wrapper" className="d-flex flex-column"><div id="content"><TopNav /></div></div></div>)}
       />
     );
   } else {
     return (
-      <Route>
         <Login />
-      </Route>
     );
   }
 }
