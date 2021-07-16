@@ -1,15 +1,15 @@
 import { useState } from "react";
 import { Button, Table } from "react-bootstrap";
 import api from "../../../AxiosCall";
-import EditClass from './EditClass';
+//import EditClass from './EditClass';
 import { useCrudContext } from "../../../providers/CrudProvider";
-function ClassItems({ classId, className, professorId }) {
-    console.log(className);
+function ClassItems({ classId, professorId }) {
+    console.log();
     const { data, dispatchCrud } = useCrudContext();
     const onDeleteHandle = () => {
 
         api
-            .delete("/Classes" + classId)
+            .delete("/Classes/DeleteClass/" + classId)
             .then((info) => {
                 dispatchCrud({ type: "delete", id: classId });
             })
@@ -30,11 +30,11 @@ function ClassItems({ classId, className, professorId }) {
 
         <tr>
 
-            <td>{className}</td>
+            
 
 
             <td>
-                <Button
+              {/*  <Button
                     className="mr-1"
                     type="button"
                     variant="info"
@@ -42,7 +42,7 @@ function ClassItems({ classId, className, professorId }) {
                     onClick={onEditHandle}
                 >
                     <i className="feather-edit">Modifiko</i>
-                </Button>
+              </Button> */}
                 <Button
                     type="button"
                     variant="danger"
@@ -51,10 +51,10 @@ function ClassItems({ classId, className, professorId }) {
                 >
                     <i className="feather-trash">Fshij</i>
                 </Button>
-                <EditClass {...{ show, classId, className, professorId, handleClose }}
+               {/*  <EditClass {...{ show, classId, className, professorId, handleClose }}
                 >
                     {""}
-                </EditClass>
+                </EditClass> */}
             </td>
         </tr>
 

@@ -23,7 +23,8 @@ import StudentGrades from "./components/pages/StudentCrud/StudentGrades";
 import ToDoList from "./components/pages/ToDo/ToDoList";
 import ProfessorExams from "./components/pages/ProfessorCrud/ProfessorExams";
 
-import HomeworkStudent from "./components/pages/StudentCrud/HomeworkStudent";
+import HomeworkStudent from "./components/pages/StudentCrud/HomeworkStudent"
+import Class from "./components/pages/ClassCrud/Class";
 import api from "./AxiosCall";
 import { createHashHistory } from "history";
 import StudentExams from "./components/pages/StudentCrud/StudentExams";
@@ -118,6 +119,19 @@ export default function Routes() {
                   <TopNav />
                     <CrudProvider>
                       <Professor />
+                    </CrudProvider>
+                </div>
+              </div>
+            </div>
+          </AdminPrivateRoute>
+          <AdminPrivateRoute exact path="/Class">
+            <div id="wrapper">
+              <Navbar />
+              <div id="content-wrapper" className="d-flex flex-column">
+                <div id="content">
+                  <TopNav />
+                    <CrudProvider>
+                      <Class />
                     </CrudProvider>
                 </div>
               </div>

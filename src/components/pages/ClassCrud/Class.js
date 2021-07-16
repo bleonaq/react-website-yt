@@ -3,7 +3,7 @@ import { Table } from "react-bootstrap";
 import { useForm } from "react-hook-form";
 import AddClass from "./AddClass";
 import { Button, ButtonToolbar, Modal, Row, Col, Form } from "react-bootstrap";
-import { EditClass } from "./EditClass";
+//import { EditClass } from "./EditClass";
 import api from "../../../AxiosCall";
 import ClassItems from "./ClassItems";
 import { useCrudContext } from "../../../providers/CrudProvider";
@@ -14,14 +14,13 @@ function Class() {
   //te dhenat per qdo kend qe eshte login ==)
   const { register, handleSubmit, reset } = useForm();
   const [show, setShow] = useState(false);
-  const [cities, setCities] = useState([]);
   const { data, dispatchCrud } = useCrudContext();
   useEffect(() => {
     getItems();
   }, []);
   const getItems = async () => {
     await api
-      .get("/Classes")
+      .get("/Classes/GetAllClasses")
       .then((res) => {
         dispatchCrud({ type: "init", payload: res.data });
       })
@@ -45,7 +44,7 @@ function Class() {
               <thead>
                 <tr>
                   <th>Paralelja</th>
-                  <th>Modifiko</th>
+                  
                 </tr>
               </thead>
               <tbody>
