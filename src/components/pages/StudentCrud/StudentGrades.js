@@ -1,7 +1,6 @@
 import React, { Component, useEffect, useState } from "react";
 import { Table } from "react-bootstrap";
 import { useForm } from "react-hook-form";
-//import AddStudent from "./AddStudent";
 import api from "../../../AxiosCall";
 import StudentItems from "./StudentItems";
 import { useCrudContext } from "../../../providers/CrudProvider";
@@ -10,12 +9,11 @@ import PostGrades from "./PostGrades";
 
 function StudentGrades() {
   const { user } = useAppContext();
-
   const { register, handleSubmit, reset } = useForm();
   const [show, setShow] = useState(false);
   const [students, setStudents] = useState([]);
-  // const[cityId,birthplaceId,genderId]=useState([];)
   const { data, dispatchCrud } = useCrudContext();
+
   useEffect(() => {
     getItems();
   }, []);
@@ -38,18 +36,17 @@ function StudentGrades() {
           <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
             <h6 class="m-0 font-weight-bold text-primary">Notat</h6>
           </div>
-          <div className="col order-second">
-          <PostGrades />
-  </div> 
-         
           <div class="card-body">
+            <div className="col order-second">
+              <PostGrades />
+            </div>
             <Table responsive="sm" className="mt-3">
               <thead>
                 <tr>
                   <th>Emri</th>
                   <th>Mbiemri</th>
                   <th>Nota</th>
-                
+
                 </tr>
               </thead>
               <tbody>
@@ -67,21 +64,6 @@ function StudentGrades() {
         </div>
       </div>
     </div>
-    // <div >
-    //     <div>
-    //     </div>
-    //     <Table responsive>
-
-    //             <thead>
-
-    //             </thead>
-
-    //                 {data.map((d) => {
-    //                     return <StudentItems key={d.studentId,d.birthplaceId,d.cityId} {...d} />
-    //                 })}
-
-    //     </Table>
-    // </div>
   );
 }
 export default StudentGrades;

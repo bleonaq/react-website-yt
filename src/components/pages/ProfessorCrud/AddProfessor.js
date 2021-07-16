@@ -17,12 +17,13 @@ function AddProfessor() {
     const [genderId, setGenderId] = useState(0);
     const [subjects, setSubjects] = useState([]);
     const [subjectId, setSubjectId] = useState([0])
+    const [paswordGenerate, setPasswordGenerate] = useState("");
     useEffect(() => {
         getItems();
     }, []);
 
     const onHandleSubmit = (data) => {
-
+        console.log(data);
         api.post('/Professor/professorPost', data)
             .then((data) => {
                 setShow(false);
@@ -43,17 +44,6 @@ function AddProfessor() {
                 console.log("error", error);
 
             })
-
-        //  api.post('/Professor/professorSubject',data)
-        // .then((data) =>{
-        //     setShow(false);
-        //    dispatchCrud({type:'insert',payload:data.data});
-        //    reset({
-        //        subjectId:""
-        //    })
-        //  }).catch((error) =>{
-        //      console.log("error",error);
-        //  })
     }
 
 
@@ -128,14 +118,23 @@ function AddProfessor() {
         const value = e.target.value;
         setGenderId(value);
     };
+    const generatePass = () => {
+        var generator = require("generate-password");
 
+        var password = generator.generate({
+            length: 16,
+            numbers: true,
+        });
+        setPasswordGenerate(password);
+    };
     return (
         <>
-            < Button variant="success" size="sm" onClick={() => setShow(true)}>
+            <Button variant="success" size="sm" onClick={() => setShow(true)}>
                 Regjistro
             </Button>
 
             <Modal
+                size="md"
                 show={show}
                 onHide={() => setShow(false)}
                 backdrop="static"
@@ -145,7 +144,7 @@ function AddProfessor() {
                     <Modal.Title>Regjistro Profesorin</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    <Form onSubmit={handleSubmit(onHandleSubmit)}>
+                    <Form id="professorForm" onSubmit={handleSubmit(onHandleSubmit)}>
                         <Form.Group>
                             <Form.Label>Emri i Profesorit</Form.Label>
                             <Form.Control type="text" placeholder="Emri i Profesorit"
@@ -171,22 +170,6 @@ function AddProfessor() {
                             <Form.Control type="text" placeholder="Data Lindjes"
                                 {...register("birthDate", { required: true, maxLength: 150 })} />
                         </Form.Group>
-
-                        <Form.Group>
-                            <Form.Group controllId="exampleForm.ControlSelect1">
-                                <Form.Label>Lenda</Form.Label>
-                                <Form.Control as="select" onChange={onHandleChangeSubject}{...register("subjectId")}>
-                                    {subjects.map((subject) => {
-                                        return (
-                                            <option value={subject.subjectId} key={subject.subjectId}>
-                                                {subject.subjectName}
-                                            </option>
-                                        );
-                                    })}
-                                </Form.Control>
-                            </Form.Group>
-                        </Form.Group>
-
                         <Form.Group>
                             <Form.Group controllId="exampleForm.ControlSelect1">
                                 <Form.Label>Gjinia</Form.Label>
@@ -233,15 +216,48 @@ function AddProfessor() {
                                 {...register("phoneNumber", { required: true, maxLength: 150 })} />
                         </Form.Group>
                         <Form.Group>
+                            <Form.Group controllId="exampleForm.ControlSelect1">
+                                <Form.Label>Lenda</Form.Label>
+                                <Form.Control as="select" onChange={onHandleChangeSubject}{...register("subjectId")}>
+                                    {subjects.map((subject) => {
+                                        return (
+                                            <option value={subject.subjectId} key={subject.subjectId}>
+                                                {subject.subjectName}
+                                            </option>
+                                        );
+                                    })}
+                                </Form.Control>
+                            </Form.Group>
+                        </Form.Group>
+                        <Form.Group>
                             <Form.Label>Email</Form.Label>
                             <Form.Control type="text" placeholder="Email"
                                 {...register("email", { required: true, maxLength: 150 })} />
                         </Form.Group>
                         <Form.Group>
-                            <Button variant="success" type="submit">
-                                Ruaj
+                            <Form.Label>Password</Form.Label>
+                            <Button
+                                className="ml-3"
+                                size="sm"
+                                variant="success"
+                                type="button"
+                                onClick={() => generatePass()}
+                            >
+                                Gjenero Fjalëkalimin
                             </Button>
+                            <Form.Control
+                                value={paswordGenerate}
+                                type="text"
+                                placeholder="password"
+                                {...register("password", { required: true, maxLength: 150 })}
+                            />
+                            <div>
+                                <span>{paswordGenerate}</span>
+                            </div>
                         </Form.Group>
+                        <Button form="professorForm" variant="success" type="submit">
+                            Ruaj
+                        </Button>
                     </Form>
                 </Modal.Body>
                 <Modal.Footer>

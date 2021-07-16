@@ -24,9 +24,10 @@ function ProfessorItem({ professorId, firstName, parentName, lastName, personalN
     };
     return (
         <tr>
+        <td>{personalNo}</td>
         <td>{firstName}</td>
-  
         <td>{lastName}</td>
+        <td>{phoneNumber}</td>
         <td>
           <Button
             className="mr-1"

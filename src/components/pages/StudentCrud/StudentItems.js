@@ -34,9 +34,11 @@ function StudentItem({
   };
   return (
     <tr>
+      <td>{personalNo}</td>
       <td>{firstName}</td>
-
+      <td>{parentName}</td>
       <td>{lastName}</td>
+      <td>{phoneNumber}</td>
       <td>
         <Button
           className="mr-1"

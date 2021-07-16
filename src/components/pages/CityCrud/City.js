@@ -26,7 +26,6 @@ function City() {
         dispatchCrud({ type: "init", payload: res.data });
       })
       .catch((error) => {
-        // AlertError.fire();
         console.log(error);
       });
   };
@@ -38,14 +37,11 @@ function City() {
           <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
             <h6 class="m-0 font-weight-bold text-primary">Qytetet</h6>
           </div>
-
-          <div class="col-md-1 mt-3">
-            <AddCity />
-          </div>
-
           <div class="card-body">
+            <div class="col-md-1 mt-3">
+              <AddCity />
+            </div>
             <Table responsive="sm" className="mt-3">
-
               <thead>
                 <tr>
                   <th>Emri Qytetit</th>
@@ -67,9 +63,6 @@ function City() {
         </div>
       </div>
     </div>
-
-
-
   );
 }
 export default City;

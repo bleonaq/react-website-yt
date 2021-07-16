@@ -19,7 +19,7 @@ function Navbar() {
   useEffect(() => {
     showButton();
   }, []);
-  console.log(user.role);
+  
   window.addEventListener("resize", showButton);
   if(user.role == "Admin"){
   return (

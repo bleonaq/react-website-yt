@@ -105,19 +105,6 @@ export default function Routes() {
               </div>
             </div>
           </AdminPrivateRoute>
-          {/* <AdminPrivateRoute exact path="/">
-            <div id="wrapper">
-              <Navbar />
-              <div id="content-wrapper" className="d-flex flex-column">
-                <div id="content">
-                  <TopNav />
-                    <CrudProvider>
-                      <Home />
-                    </CrudProvider>
-                </div>
-              </div>
-            </div>
-          </AdminPrivateRoute> */}
           <AdminPrivateRoute exact path="/Professor">
             <div id="wrapper">
               <Navbar />
@@ -131,37 +118,6 @@ export default function Routes() {
               </div>
             </div>
           </AdminPrivateRoute>
-          <AdminPrivateRoute exact path="/StudentGrades">
-            <div id="wrapper">
-              <Navbar />
-              <div id="content-wrapper" className="d-flex flex-column">
-                <div id="content">
-                  <TopNav />
-                    <CrudProvider>
-                      <StudentGrades />
-                    </CrudProvider>
-                </div>
-              </div>
-            </div>
-          </AdminPrivateRoute>
-        
-          <AdminPrivateRoute exact path="/ToDoList">
-            <div id="wrapper">
-              <Navbar />
-              <div id="content-wrapper" className="d-flex flex-column">
-                <div id="content">
-                  <TopNav />
-                    <CrudProvider>
-                      <ToDoList />
-                    </CrudProvider>
-                </div>
-              </div>
-            </div>
-          </AdminPrivateRoute>
-
-
-
-
           <AdminPrivateRoute exact path="/Subject">
             <div id="wrapper">
               <Navbar />
@@ -196,6 +152,19 @@ export default function Routes() {
                   <TopNav />
                     <CrudProvider>
                       <Birthplace />
+                    </CrudProvider>
+                </div>
+              </div>
+            </div>
+          </AdminPrivateRoute>
+          <AdminPrivateRoute exact path="/StudentGrades">
+            <div id="wrapper">
+              <Navbar />
+              <div id="content-wrapper" className="d-flex flex-column">
+                <div id="content">
+                  <TopNav />
+                    <CrudProvider>
+                      <StudentGrades />
                     </CrudProvider>
                 </div>
               </div>
@@ -236,6 +205,22 @@ export default function Routes() {
               </div>
             </div>
             </ProfessorPrivateRoute>
+            <ProfessorPrivateRoute exact path="/ToDoList">
+            <div id="wrapper">
+              <Navbar />
+              <div id="content-wrapper" className="d-flex flex-column">
+                <div id="content">
+                  <TopNav />
+                    <CrudProvider>
+                      <ToDoList />
+                    </CrudProvider>
+                </div>
+              </div>
+            </div>
+          </ProfessorPrivateRoute>
+          
+         
+          //#endregion
             <AdminPrivateRoute exact path="/*">
             <div id="wrapper">
               <Navbar />

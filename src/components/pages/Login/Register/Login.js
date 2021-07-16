@@ -56,7 +56,7 @@ const Login = () => {
                 <div className="col-lg-6">
                   <div className="p-5">
                     <div className="text-center">
-                    <h1 className="h4 text-gray-900 mb-4">Management Studio</h1>
+                      <h1 className="h4 text-gray-900 mb-4">Management Studio</h1>
                       <h1 className="h4 text-gray-900 mb-4">Welcome Back!</h1>
                     </div>
                     <Form onSubmit={onLoginHandel} className="user">

@@ -10,12 +10,11 @@ import PostGrades from "./PostGrades";
 
 function Student() {
   const { user } = useAppContext();
-
   const { register, handleSubmit, reset } = useForm();
   const [show, setShow] = useState(false);
   const [students, setStudents] = useState([]);
-  // const[cityId,birthplaceId,genderId]=useState([];)
   const { data, dispatchCrud } = useCrudContext();
+
   useEffect(() => {
     getItems();
   }, []);
@@ -24,6 +23,7 @@ function Student() {
     await api
       .get("/Student/getAllStudents")
       .then((res) => {
+        console.log(res);
         dispatchCrud({ type: "init", payload: res.data });
       })
       .catch((error) => {
@@ -33,23 +33,23 @@ function Student() {
 
   return (
     <div className="container-fluid">
-      <div className="col-xl-8 col-lg-7">
+      <div className="col-xl-12">
         <div className="card shadow mb-4">
           <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
             <h6 class="m-0 font-weight-bold text-primary">Studentet</h6>
           </div>
-         {/* <div className="col order-second">
-          <PostGrades />
-  </div> */}
-          <div className="col order-first">
-          <AddStudent />
-          </div>
           <div class="card-body">
+            <div className="col order-first">
+              <AddStudent />
+            </div>
             <Table responsive="sm" className="mt-3">
               <thead>
                 <tr>
+                  <th>Nr. Personal</th>
                   <th>Emri</th>
+                  <th>Emri i Prindit</th>
                   <th>Mbiemri</th>
+                  <th>Nr. Telefonit</th>
                   <th>Modifiko</th>
                 </tr>
               </thead>
@@ -68,21 +68,6 @@ function Student() {
         </div>
       </div>
     </div>
-    // <div >
-    //     <div>
-    //     </div>
-    //     <Table responsive>
-
-    //             <thead>
-
-    //             </thead>
-
-    //                 {data.map((d) => {
-    //                     return <StudentItems key={d.studentId,d.birthplaceId,d.cityId} {...d} />
-    //                 })}
-
-    //     </Table>
-    // </div>
   );
 }
 export default Student;

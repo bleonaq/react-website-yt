@@ -1,6 +1,5 @@
 import React, { Component, useEffect, useState } from 'react';
 import { Table } from 'react-bootstrap';
-//import { Component } from 'react';
 import { useForm } from 'react-hook-form';
 import AddBirthplace from './AddBirthplace';
 import { Button, ButtonToolbar, Modal, Row, Col, Form } from 'react-bootstrap';
@@ -10,13 +9,7 @@ import { useCrudContext } from '../../../providers/CrudProvider';
 import { useAppContext } from '../../../providers/AppProvider';
 import { useParams } from 'react-router-dom';
 
-
-
-
-
 function Birthplace() {
-
-
   const { user } = useAppContext();
   const { register, handleSubmit, reset } = useForm();
   const [show, setShow] = useState(false);
@@ -35,14 +28,9 @@ function Birthplace() {
         dispatchCrud({ type: 'init', payload: res.data })
       })
       .catch(error => {
-        // AlertError.fire();
         console.log(error);
       });
-
-
   }
-
-
 
   const getItemsId = async () => {
     await api.get('/Administration/getAllBirthPlaces/' + cityId)
@@ -51,25 +39,14 @@ function Birthplace() {
         dispatchCrud({ type: 'init', payload: res.data })
       })
       .catch(error => {
-        // AlertError.fire();
         console.log(error);
       }); //
-
-
   }
+
   useEffect(() => {
     console.log(user);
     getItemsId();
   }, []);
-
-
-
-
-
-
-
-
-
 
   return (
     <div className="container-fluid">
@@ -78,11 +55,10 @@ function Birthplace() {
           <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
             <h6 class="m-0 font-weight-bold text-primary">Vendi i Lindjes</h6>
           </div>
-
+          <div class="card-body">
           <div class="col-md-1 mt-3">
             <AddBirthplace />
           </div>
-          <div class="card-body">
             <Table responsive="sm" className="mt-3">
               <thead>
                 <tr>
@@ -107,6 +83,5 @@ function Birthplace() {
     </div>
   )
 }
-
 
 export default Birthplace;

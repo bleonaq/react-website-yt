@@ -8,13 +8,12 @@ import { useCrudContext } from '../../../providers/CrudProvider';
 import { useAppContext } from '../../../providers/AppProvider';
 
 function Subject() {
-
     const { user } = useAppContext();
-
     const { register, handleSubmit, reset } = useForm();
     const [show, setShow] = useState(false);
     const [subjects, setSubjects] = useState([]);
     const { data, dispatchCrud } = useCrudContext();
+
     useEffect(() => {
         console.log(user);
         getItems();
@@ -32,24 +31,21 @@ function Subject() {
     }
 
     return (
-
-
         <div className="container-fluid">
-            <div className="col-xl-8 col-lg-7">
+            <div className="col-xl-12">
                 <div className="card shadow mb-4">
                     <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                         <h6 class="m-0 font-weight-bold text-primary">Lendet</h6>
                     </div>
-                    <div className="col-md-1 mt-3">
-                        <AddSubject />
-                    </div>
                     <div class="card-body">
+                        <div className="col-md-1 mt-3">
+                            <AddSubject />
+                        </div>
                         <Table responsive="sm" className="mt-3">
                             <thead>
                                 <tr>
                                     <th>Emri lendes</th>
                                     <th>Modifiko</th>
-                                    
                                 </tr>
                             </thead>
                             <tbody>
