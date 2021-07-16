@@ -87,6 +87,12 @@ function Navbar() {
             <span> Grades</span>
           </Link>
         </li>
+        <li className="nav-item">
+          <Link className="nav-link" to="/Class">
+            <i class="fas fa-user-tie"></i>
+            <span> Classes</span>
+          </Link>
+        </li>
         <div className="text-center d-none d-md-inline">
           <button
             className="rounded-circle border-0"
