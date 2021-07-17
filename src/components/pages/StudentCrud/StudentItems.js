@@ -47,7 +47,7 @@ function StudentItem({
           size="sm"
           onClick={onEditHandle}
         >
-          <i className="feather-edit">Modifiko</i>
+          <i className="feather-edit">Modify</i>
         </Button>
         <Button
           type="button"
@@ -55,7 +55,7 @@ function StudentItem({
           onClick={onDeleteHandle}
           size="sm"
         >
-          <i className="feather-trash">Fshij</i>
+          <i className="feather-trash">Delete</i>
         </Button>
         <EditStudent
           {...{

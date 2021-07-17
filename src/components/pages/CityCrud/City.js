@@ -11,7 +11,6 @@ import { useAppContext } from "../../../providers/AppProvider";
 
 function City() {
   const { user } = useAppContext();
-  //te dhenat per qdo kend qe eshte login ==)
   const { register, handleSubmit, reset } = useForm();
   const [show, setShow] = useState(false);
   const [cities, setCities] = useState([]);
@@ -35,7 +34,7 @@ function City() {
       <div className="col-xl-8 col-lg-7">
         <div className="card shadow mb-4">
           <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-            <h6 class="m-0 font-weight-bold text-primary">Qytetet</h6>
+            <h6 class="m-0 font-weight-bold text-primary">Cities</h6>
           </div>
           <div class="card-body">
             <div class="col-md-1 mt-3">
@@ -44,18 +43,13 @@ function City() {
             <Table responsive="sm" className="mt-3">
               <thead>
                 <tr>
-                  <th>Emri Qytetit</th>
-                  <th>Modifiko</th>
+                  <th>City Name</th>
+                  <th style={{ width: "20%" }}>Modify</th>
                 </tr>
               </thead>
               <tbody>
                 {data.map((d) => {
-                  return (
-                    <CityItem
-                      key={(d.cityId)}
-                      {...d}
-                    />
-                  );
+                  return <CityItem key={d.cityId} {...d} />;
                 })}
               </tbody>
             </Table>

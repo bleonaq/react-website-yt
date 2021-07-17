@@ -17,7 +17,6 @@ function AddExam() {
         headers: { Authorization: `Bearer ${user.token}` },
       })
       .then((data) => {
-        console.log(data);
         setShow(false);
         reset({
           description: "",
@@ -34,7 +33,6 @@ function AddExam() {
       <Button variant="success" size="sm" onClick={() => setShow(true)}>
         Regjistro
       </Button>
-
       <Modal
         show={show}
         onHide={() => setShow(false)}
@@ -42,23 +40,23 @@ function AddExam() {
         keyboard={false}
       >
         <Modal.Header closeButton>
-          <Modal.Title>Regjistro Provim</Modal.Title>
+          <Modal.Title>Register Exam</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <Form onSubmit={handleSubmit(onHandleSubmit)}>
             <Form.Group>
-              <Form.Label>Pershkrimi</Form.Label>
+              <Form.Label>Description</Form.Label>
               <Form.Control
                 type="text"
-                placeholder="Pershkrimi"
+                placeholder="Description"
                 {...register("description", { required: true, maxLength: 150 })}
               />
             </Form.Group>
             <Form.Group>
-              <Form.Label>Data e mbajtjes</Form.Label>
+              <Form.Label>Date Of Retention</Form.Label>
               <Form.Control
                 type="text"
-                placeholder="Data"
+                placeholder="Date Of Retention"
                 {...register("dateOfRetention", {
                   required: true,
                   maxLength: 150,
@@ -67,14 +65,14 @@ function AddExam() {
             </Form.Group>
             <Form.Group>
               <Button variant="success" type="submit">
-                Ruaj
+                Save
               </Button>
             </Form.Group>
           </Form>
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={() => setShow(false)}>
-            Mbyll
+            Exit
           </Button>
         </Modal.Footer>
       </Modal>

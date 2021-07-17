@@ -22,10 +22,11 @@ function AddCity() {
   };
   return (
     <>
-      <Button variant="success" size="sm" onClick={() => setShow(true)}>
-        Regjistro
-      </Button>
-
+      <Form.Group>
+        <Button variant="success" size="xl" onClick={() => setShow(true)}>
+          Register
+        </Button>
+      </Form.Group>
       <Modal
         show={show}
         onHide={() => setShow(false)}
@@ -61,4 +62,5 @@ function AddCity() {
     </>
   );
 }
+
 export default AddCity;

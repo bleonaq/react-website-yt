@@ -1,87 +1,87 @@
-import React, { Component, useEffect, useState } from 'react';
-import { Table } from 'react-bootstrap';
-import { useForm } from 'react-hook-form';
-import AddBirthplace from './AddBirthplace';
-import { Button, ButtonToolbar, Modal, Row, Col, Form } from 'react-bootstrap';
+import React, { Component, useEffect, useState } from "react";
+import { Table } from "react-bootstrap";
+import { useForm } from "react-hook-form";
+import AddBirthplace from "./AddBirthplace";
+import { Button, ButtonToolbar, Modal, Row, Col, Form } from "react-bootstrap";
 import api from "../../../AxiosCall";
-import BirthplaceItems from './BirthplaceItems';
-import { useCrudContext } from '../../../providers/CrudProvider';
-import { useAppContext } from '../../../providers/AppProvider';
-import { useParams } from 'react-router-dom';
-
+import BirthplaceItems from "./BirthplaceItems";
+import { useCrudContext } from "../../../providers/CrudProvider";
+import { useAppContext } from "../../../providers/AppProvider";
+import { useParams } from "react-router-dom";
+import BirthplaceList from "./BirthplaceList";
 function Birthplace() {
   const { user } = useAppContext();
   const { register, handleSubmit, reset } = useForm();
   const [show, setShow] = useState(false);
   const [birthplaces, setBirthplaces] = useState([]);
-  const [cityId] = useState([])
+  const [cities, setCities] = useState([]);
+  const [cityId, setCityId] = useState();
   const { data, dispatchCrud } = useCrudContext();
 
-  useEffect(() => {
-    console.log(user);
-    getItems();
-  }, []);
-  const getItems = async () => {
-    await api.get('/Administration/getAllBirthPlaces')
-      .then(res => {
-        console.log(res);
-        dispatchCrud({ type: 'init', payload: res.data })
+  const getCities = async () => {
+    await api
+      .get("/Administration/getAllCities")
+      .then((res) => {
+        setCities(res.data);
+        setCityId(res.data[0].cityId);
       })
-      .catch(error => {
+      .catch((error) => {
         console.log(error);
       });
-  }
+  };
 
-  const getItemsId = async () => {
-    await api.get('/Administration/getAllBirthPlaces/' + cityId)
-      .then(res => {
-        console.log(res);
-        dispatchCrud({ type: 'init', payload: res.data })
-      })
-      .catch(error => {
-        console.log(error);
-      }); //
-  }
+  const onHandleChangeCity = (e) => {
+    const value = e.target.value;
+    const getItems = async () => {
+      await api
+        .get("/Administration/getBirthplaceByCity/" + value)
+        .then((res) => {
+          setBirthplaces(res.data);
+          dispatchCrud({ type: "init", payload: res.data });
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    };
+    setCityId(value);
+  };
 
   useEffect(() => {
-    console.log(user);
-    getItemsId();
+    getCities();
   }, []);
 
   return (
     <div className="container-fluid">
       <div className="col-xl-8 col-lg-7">
         <div className="card shadow mb-4">
-          <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-            <h6 class="m-0 font-weight-bold text-primary">Vendi i Lindjes</h6>
+          <div className="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+            <h6 className="m-0 font-weight-bold text-primary">Birthplaces</h6>
           </div>
-          <div class="card-body">
-          <div class="col-md-1 mt-3">
-            <AddBirthplace />
-          </div>
-            <Table responsive="sm" className="mt-3">
-              <thead>
-                <tr>
-                  <th>Emri Vendit te Lindjes</th>
-                  <th>Modifiko</th>
-                </tr>
-              </thead>
-              <tbody>
-                {data.map((d) => {
+          <div className="card-body">
+            <div className="col-md-1 mt-3">
+              <AddBirthplace />
+            </div>
+            <div className="col-md-3 mt-3">
+              <Form.Control
+                as="select"
+                onChange={onHandleChangeCity}
+                {...cityId}
+              >
+                {cities.map((city) => {
                   return (
-                    <BirthplaceItems
-                      key={(d.cityId)}
-                      {...d}
-                    />
+                    <option value={city.cityId} key={city.cityId}>
+                      {city.cityName}
+                    </option>
                   );
                 })}
-              </tbody>
-            </Table>
+              </Form.Control>
+            </div>
+            <BirthplaceList cityId={cityId} />
           </div>
         </div>
       </div>
     </div>
-  )
+  );
 }
 
 export default Birthplace;

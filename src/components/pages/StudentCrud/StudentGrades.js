@@ -11,8 +11,10 @@ function StudentGrades() {
   const { user } = useAppContext();
   const { register, handleSubmit, reset } = useForm();
   const [show, setShow] = useState(false);
-  const [students, setStudents] = useState([]);
+  const [grades, setGrades] = useState([]);
   const { data, dispatchCrud } = useCrudContext();
+
+  // dispatchCrud({ type: "init", payload: res.data });
 
   useEffect(() => {
     getItems();
@@ -20,7 +22,7 @@ function StudentGrades() {
 
   const getItems = async () => {
     await api
-      .get("/Grades")
+      .get("/Professor/getProfessorPostedGrades", {headers: { Authorization: `Bearer ${user.token}` }})
       .then((res) => {
         dispatchCrud({ type: "init", payload: res.data });
       })
@@ -29,12 +31,13 @@ function StudentGrades() {
       });
   };
 
+
   return (
     <div className="container-fluid">
       <div className="col-xl-8 col-lg-7">
         <div className="card shadow mb-4">
           <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-            <h6 class="m-0 font-weight-bold text-primary">Notat</h6>
+            <h6 class="m-0 font-weight-bold text-primary">Grades</h6>
           </div>
           <div class="card-body">
             <div className="col order-second">
@@ -43,21 +46,12 @@ function StudentGrades() {
             <Table responsive="sm" className="mt-3">
               <thead>
                 <tr>
-                  <th>Emri</th>
-                  <th>Mbiemri</th>
-                  <th>Nota</th>
-
+                  <th>Grade</th>
+                  <th>Subject</th>
+                  <th>Date Of Retention</th>
                 </tr>
               </thead>
               <tbody>
-                {data.map((d) => {
-                  return (
-                    <StudentItems
-                      key={(d.studentId)}
-                      {...d}
-                    />
-                  );
-                })}
               </tbody>
             </Table>
           </div>

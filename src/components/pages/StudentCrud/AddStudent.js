@@ -20,7 +20,6 @@ function AddStudent() {
   }, []);
 
   const onHandleSubmit = (data) => {
-    console.log(data);
     api
       .post("/Student/studentPost", data)
       .then((data) => {
@@ -109,7 +108,7 @@ function AddStudent() {
   return (
     <>
       <Button variant="success" size="sm" onClick={() => setShow(true)}>
-        Regjistro
+        Register
       </Button>
 
       <Modal
@@ -120,15 +119,15 @@ function AddStudent() {
         keyboard={false}
       >
         <Modal.Header closeButton>
-          <Modal.Title>Regjistro Student</Modal.Title>
+          <Modal.Title>Register Student</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <Form id="studentForm" onSubmit={handleSubmit(onHandleSubmit)}>
             <Form.Group>
-              <Form.Label>Emri i Studentit</Form.Label>
+              <Form.Label>Student Name</Form.Label>
               <Form.Control
                 type="text"
-                placeholder="Emri i Studentit"
+                placeholder="Student Name"
                 {...register("firstName", {
                   required: true,
                   maxLength: 150,
@@ -136,10 +135,10 @@ function AddStudent() {
               />
             </Form.Group>
             <Form.Group>
-              <Form.Label>Emri i Prindit</Form.Label>
+              <Form.Label>Parent Name</Form.Label>
               <Form.Control
                 type="text"
-                placeholder="Emri i Prindit"
+                placeholder="Parent Name"
                 {...register("parentName", {
                   required: true,
                   maxLength: 150,
@@ -147,10 +146,10 @@ function AddStudent() {
               />
             </Form.Group>
             <Form.Group>
-              <Form.Label>Mbiemri i Studentit</Form.Label>
+              <Form.Label>Student Surname</Form.Label>
               <Form.Control
                 type="text"
-                placeholder="Mbiemri i Studentit"
+                placeholder="Student Surname"
                 {...register("lastName", {
                   required: true,
                   maxLength: 150,
@@ -158,10 +157,10 @@ function AddStudent() {
               />
             </Form.Group>
             <Form.Group>
-              <Form.Label>Numri Personal</Form.Label>
+              <Form.Label>Nr Personal</Form.Label>
               <Form.Control
                 type="text"
-                placeholder="Numri Personal"
+                placeholder="Nr Personal"
                 {...register("personalNo", {
                   required: true,
                   maxLength: 150,
@@ -169,10 +168,10 @@ function AddStudent() {
               />
             </Form.Group>
             <Form.Group>
-              <Form.Label>Data Lindjes</Form.Label>
+              <Form.Label>BirthDate</Form.Label>
               <Form.Control
                 type="text"
-                placeholder="Data Lindjes"
+                placeholder="BirthDate"
                 {...register("birthDate", {
                   required: true,
                   maxLength: 150,
@@ -180,7 +179,7 @@ function AddStudent() {
               />
             </Form.Group>
             <Form.Group>
-              <Form.Label>Gjinia</Form.Label>
+              <Form.Label>Gender</Form.Label>
               <Form.Control
                 as="select"
                 onChange={onHandleChangeGender}
@@ -196,7 +195,7 @@ function AddStudent() {
               </Form.Control>
             </Form.Group>
             <Form.Group>
-              <Form.Label>Vendi Lindjes</Form.Label>
+              <Form.Label>Birthplace</Form.Label>
               <Form.Control
                 as="select"
                 onChange={onHandleChangeBirthplace}
@@ -215,7 +214,7 @@ function AddStudent() {
               </Form.Control>
             </Form.Group>
             <Form.Group controlId="exampleForm.ControlSelect1">
-              <Form.Label>Qyteti</Form.Label>
+              <Form.Label>City</Form.Label>
               <Form.Control
                 as="select"
                 onChange={onHandleChangeCity}
@@ -231,10 +230,10 @@ function AddStudent() {
               </Form.Control>
             </Form.Group>
             <Form.Group>
-              <Form.Label>Numri telefonit</Form.Label>
+              <Form.Label>Phone Num</Form.Label>
               <Form.Control
                 type="text"
-                placeholder="Numri telefonit"
+                placeholder="Phone Num"
                 {...register("phoneNumber", {
                   required: true,
                   maxLength: 150,
@@ -258,7 +257,7 @@ function AddStudent() {
                 type="button"
                 onClick={() => generatePass()}
               >
-                Gjenero Fjalëkalimin
+                Generate Password
               </Button>
               <Form.Control
                 value={paswordGenerate}
@@ -268,14 +267,14 @@ function AddStudent() {
               />
             </Form.Group>
             <Button form="studentForm" variant="success" type="submit">
-              Ruaj
+              Save
             </Button>
           </Form>
         </Modal.Body>
 
         <Modal.Footer>
           <Button variant="secondary" onClick={() => setShow(false)}>
-            Mbyll
+            Exit
           </Button>
         </Modal.Footer>
       </Modal>

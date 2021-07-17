@@ -23,7 +23,6 @@ function Student() {
     await api
       .get("/Student/getAllStudents")
       .then((res) => {
-        console.log(res);
         dispatchCrud({ type: "init", payload: res.data });
       })
       .catch((error) => {
@@ -36,7 +35,7 @@ function Student() {
       <div className="col-xl-12">
         <div className="card shadow mb-4">
           <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-            <h6 class="m-0 font-weight-bold text-primary">Studentet</h6>
+            <h6 class="m-0 font-weight-bold text-primary">Students</h6>
           </div>
           <div class="card-body">
             <div className="col order-first">
@@ -45,12 +44,12 @@ function Student() {
             <Table responsive="sm" className="mt-3">
               <thead>
                 <tr>
-                  <th>Nr. Personal</th>
-                  <th>Emri</th>
-                  <th>Emri i Prindit</th>
-                  <th>Mbiemri</th>
-                  <th>Nr. Telefonit</th>
-                  <th>Modifiko</th>
+                  <th>Personal Num</th>
+                  <th>Name</th>
+                  <th>Parent Name</th>
+                  <th>Surname</th>
+                  <th>Phone Num</th>
+                  <th>Modify</th>
                 </tr>
               </thead>
               <tbody>

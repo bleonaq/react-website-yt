@@ -139,6 +139,7 @@ else if(user.role == "Student"){
               <span> Notat</span>
             </Link>
           </li>
+          
           <li className="nav-item">
             <Link className="nav-link" to="/StudentExams">
               <i class="fas fa-user-tie"></i>
@@ -198,7 +199,7 @@ else if(user.role == "Student"){
             </Link>
           </li>
           <li className="nav-item">
-            <Link className="nav-link" to="/PostGrades">
+            <Link className="nav-link" to="/StudentGrades">
             <i class="fas fa-city"></i>
               <span> Notat</span>
             </Link>

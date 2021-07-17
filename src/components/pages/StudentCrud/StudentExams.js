@@ -26,9 +26,8 @@ function StudentExams() {
         headers: { Authorization: `Bearer ${user.token}` },
       })
       .then((res) => {
-        console.log(res);
+        
         setExams(res.data);
-        // dispatchCrud({ type: "init", payload: res.data });
       })
       .catch((error) => {
         console.log(error);
@@ -37,24 +36,32 @@ function StudentExams() {
 
   return (
     <>
-          <div className="container-fluid">
-          <div className="row">
-
-      {exams.map((d) => {
-        return (
+      <div className="container-fluid">
+        <div className="row">
+          {exams.map((d) => {
+            return (
               <div className="col-xl-4 mb-4">
-                <div className="card border-left-primary shadow h-100 py-2 my-4" >
+                <div className="card border-left-primary shadow h-100 py-2 my-4">
                   <div className="card-body">
                     <div className="row no-gutters align-items-center">
                       <div className="col mr-2">
                         <div className="h4 text-xs mb-1">
-                            Lenda: <span className="h5 text-primary font-weight-bold">{d.subject.subjectName}</span>
+                          Subject:{" "}
+                          <span className="h5 text-primary font-weight-bold">
+                            {d.subject.subjectName}
+                          </span>
                         </div>
                         <div className="h4 text-xs mb-1">
-                            Ligjeruesi: <span className="h5 text-primary font-weight-bold">{d.professor.firstName} {d.professor.lastName}</span>
+                          Professor:{" "}
+                          <span className="h5 text-primary font-weight-bold">
+                            {d.professor.firstName} {d.professor.lastName}
+                          </span>
                         </div>
                         <div classNameName="h4 mb-0 font-weight-bold text-gray-800">
-                            Pershkrim: <span className=" mb-0 font-weight-bold text-gray-800">{d.description}</span>
+                          Description:{" "}
+                          <span className=" mb-0 font-weight-bold text-gray-800">
+                            {d.description}
+                          </span>
                         </div>
                       </div>
                       <div className="col-auto">
@@ -64,11 +71,10 @@ function StudentExams() {
                   </div>
                 </div>
               </div>
-        );
-      })}
-          </div>
-          </div>
-      
+            );
+          })}
+        </div>
+      </div>
     </>
   );
 }
